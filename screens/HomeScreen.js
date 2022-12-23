@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
     },
     topContainer: {
-        width: '100%',
+        width: '80%',
         height: '30%',
         justifyContent: 'center',
         marginLeft: "10%",
     },
     middleContainer: {
-        width: '100%',
+        width: '80%',
         height: '30%',
         alignItems: 'center',
     },
