@@ -1,26 +1,35 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../firebase/firebaseConfig'
 
-const SignUpScreen = ({navigation}) => {
+const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const register = async (name, email, password) => {
         try {
-          await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-            console.log(err)
-          );
-          await updateProfile(auth.currentUser, { displayName: name }).catch(
-            (err) => console.log(err)
-          );
+            await createUserWithEmailAndPassword(auth, email, password)
+            await updateProfile(auth.currentUser, { displayName: name })
+            navigation.navigate('Home')
         } catch (err) {
-          console.log(err);
+            switch(err.code) {
+                case 'auth/email-already-in-use':
+                    alert('Email already in use')
+                    break;
+                case 'auth/invalid-email':
+                    alert('Invalid email')
+                    break;
+                case 'auth/weak-password':
+                    alert('Weak password')
+                    break;
+                default:
+                    console.log(err)
+            }
         }
-        navigation.navigate('Home');
-    };
+      };
+
 
     return (
         <KeyboardAvoidingView
@@ -75,7 +84,7 @@ const SignUpScreen = ({navigation}) => {
     )
 }
 
-export default SignUpScreen
+export default RegisterScreen
 
 const styles = StyleSheet.create({
     // Screen Containers
