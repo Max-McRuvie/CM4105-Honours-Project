@@ -8,6 +8,20 @@ const SignUpScreen = (navigation) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const register = async (name, email, password) => {
+        try {
+          await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
+            console.log(err)
+          );
+          await updateProfile(auth.currentUser, { displayName: name }).catch(
+            (err) => console.log(err)
+          );
+        } catch (err) {
+          console.log(err);
+        }
+        console.log(auth.currentUser.displayName);
+    };
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -46,7 +60,7 @@ const SignUpScreen = (navigation) => {
                 <View style={styles.buttonContainer}>
                     
                     <TouchableOpacity
-                        onPress={() => {}}
+                        onPress={() => register(name, email, password)}
                         style={[styles.button, styles.buttonOutline]}
                     >
                         <Text style={styles.buttonOutlineText}>Register</Text>
