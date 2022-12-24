@@ -1,22 +1,34 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { auth } from '../firebase/firebaseConfig'
 
 const HomeScreen = () => {
-  return (
-    <>
-        <View style={styles.topContainer}> 
-                <Text style={{fontSize: 30}}>Hello [Insert Name]</Text>
-        </View>
-        
-        <View style={styles.middleContainer}>
+    
+    const [name, setName] = useState('')
 
-        </View>
+    useEffect(() => {
+        auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                setName(authUser.displayName)
+            }
+        })
+    }, [])
 
-        <View style={styles.footerContainer}>
+    return (
+        <>
+            <View style={styles.topContainer}> 
+                    <Text style={{fontSize: 30}}>Hello {name}</Text>
+            </View>
+            
+            <View style={styles.middleContainer}>
 
-        </View>
-    </>
-  )
+            </View>
+
+            <View style={styles.footerContainer}>
+
+            </View>
+        </>
+    )
 }
 
 export default HomeScreen
