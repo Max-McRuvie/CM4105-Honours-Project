@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../firebase/firebaseConfig'
 
-const SignUpScreen = (navigation) => {
+const SignUpScreen = ({navigation}) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,7 +19,7 @@ const SignUpScreen = (navigation) => {
         } catch (err) {
           console.log(err);
         }
-        console.log(auth.currentUser.displayName);
+        navigation.navigate('Home');
     };
 
     return (
