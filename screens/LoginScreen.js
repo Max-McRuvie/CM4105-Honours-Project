@@ -1,10 +1,20 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
-
+import { signInWithEmailAndPassword} from "firebase/auth"
+import { auth } from '../firebase/firebaseConfig'
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const Login = async (email, password) => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password)
+            navigation.navigate('Home')
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <KeyboardAvoidingView
@@ -42,7 +52,7 @@ const LoginScreen = ({navigation}) => {
 
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() => Login(email, password)}
                         style={styles.button}
                     >
                         <Text style={styles.buttonText}>Login</Text>
