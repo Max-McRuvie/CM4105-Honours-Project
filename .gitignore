@@ -89,3 +89,13 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Firebase
+/firebase
+firebase.js
+
+# babel
+babel.config.js
+
+# metro
+metro.config.js

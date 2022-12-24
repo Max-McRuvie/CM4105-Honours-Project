@@ -1,22 +1,31 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { auth } from '../firebase/firebaseConfig'
 
-
-const LoginScreen = ({navigation}) => {
+const SignUpScreen = (navigation) => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     return (
         <KeyboardAvoidingView
             style={styles.container}
-            behavior= "height"       
+            behavior= "padding"       
         >
             <View style={styles.topContainer}> 
-                <Text style={{fontSize: 30}}>Log-in</Text>
+                <Text style={{fontSize: 30}}>Register</Text>
             </View>
 
             <View style={styles.middleContainer}>
                 <View style={styles.inputContainer}>
+                    <Text style={styles.inputHeader}>Name</Text>
+                    <TextInput 
+                        placeholder="Name"
+                        value={name}
+                        onChangeText={text => setName(text)}
+                        style={styles.input}
+                    />
                     <Text style={styles.inputHeader}>Email</Text>
                     <TextInput 
                         placeholder="Email"
@@ -34,22 +43,10 @@ const LoginScreen = ({navigation}) => {
                     />
                 </View>
 
-                <View style={styles.forgotPasswordContainer}>
-                    <TouchableOpacity style={styles.forgotPassword}> 
-                        <Text style={styles.forgotPassword}>Forgot Password?</Text>
-                    </TouchableOpacity>
-                </View>
-
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Home')}
-                        style={styles.button}
-                    >
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
                     
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Register')}
+                        onPress={() => {}}
                         style={[styles.button, styles.buttonOutline]}
                     >
                         <Text style={styles.buttonOutlineText}>Register</Text>
@@ -64,7 +61,7 @@ const LoginScreen = ({navigation}) => {
     )
 }
 
-export default LoginScreen
+export default SignUpScreen
 
 const styles = StyleSheet.create({
     // Screen Containers
@@ -153,5 +150,4 @@ const styles = StyleSheet.create({
     forgotPassword: {
         textAlign: 'right'
     },
-
 })
