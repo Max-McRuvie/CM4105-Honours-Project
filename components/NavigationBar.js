@@ -14,19 +14,19 @@ const NavigationBar = () => {
           <Image source={require('./images/HomeIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Nutrition Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5}>
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('Nutrition')}>
           <Image source={require('./images/NutritionIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Camera Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5}>
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} >
           <Image source={require('./images/CameraIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Recipe Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5}>
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('Recipes')}>
           <Image source={require('./images/RecipeIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Profile Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5}>
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('Profile')}>
           <Image source={require('./images/ProfileIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
       </View>
