@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { auth } from '../firebase/firebaseConfig'
+import NavigationBar from '../components/NavigationBar'
 
 const HomeScreen = () => {
     
@@ -15,7 +16,7 @@ const HomeScreen = () => {
     }, [])
 
     return (
-        <>
+        <View style={styles.container}>
             <View style={styles.topContainer}> 
                     <Text style={{fontSize: 30}}>Hello {name}</Text>
             </View>
@@ -25,9 +26,9 @@ const HomeScreen = () => {
             </View>
 
             <View style={styles.footerContainer}>
-
+                <NavigationBar />
             </View>
-        </>
+        </View>
     )
 }
 
@@ -35,10 +36,8 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#D9D9D9',
+        height: '100%',
+        width: '100%',
     },
     topContainer: {
         width: '80%',
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     },
     middleContainer: {
         width: '80%',
-        height: '30%',
+        height: '60%',
         alignItems: 'center',
     },
     footContainer: {
