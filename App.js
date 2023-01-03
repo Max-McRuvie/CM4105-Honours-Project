@@ -9,6 +9,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import NutritionScreen from './screens/NutritionScreen';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import BarcodeScanner from './screens/BarcodeScanner';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen options={{headerShown: false}} name="Nutrition" component={NutritionScreen} />
         <Stack.Screen options={{headerShown: false}} name="Recipes" component={RecipeScreen} />
         <Stack.Screen options={{headerShown: false}} name="Profile" component={ProfileScreen} />
+        <Stack.Screen options={{headerShown: false}} name="BarcodeScanner" component={BarcodeScanner} />
         <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>

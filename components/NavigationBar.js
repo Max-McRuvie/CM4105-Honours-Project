@@ -18,7 +18,7 @@ const NavigationBar = () => {
           <Image source={require('./images/NutritionIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Camera Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} >
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('BarcodeScanner')}>
           <Image source={require('./images/CameraIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Recipe Button */}
