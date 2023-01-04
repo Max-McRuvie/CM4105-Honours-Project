@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Image, TextInput, StatusBar, Alert } from 'react-native';
+import { Text, View, StyleSheet, Button, Image, TextInput, StatusBar, Alert, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import  getFoodInformation  from '../apis/FoodFactsApi.js';
 
 const BarcodeScanner = () => {
     const [hasPermission, setHasPermission] = useState(null);
@@ -23,7 +24,7 @@ const BarcodeScanner = () => {
       setScanned(true);
       Alert.alert(
         "Alert Title",
-        "Would you like to scan again or see ingredients?",
+        "My Alert Msg",
         [
             {
                 text: "Cancel",
@@ -37,7 +38,7 @@ const BarcodeScanner = () => {
             },
             { 
                 text: "See ingredients", 
-                onPress: () => console.log(data),
+                onPress: () => getFoodInformation(data),
                 style: "ok"
             }
         ]
