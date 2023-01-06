@@ -24,7 +24,7 @@ const BarcodeScanner = () => {
     };
 
     const addProductToList = (product) => {
-      updateProductList([...productList, product]);
+      updateProductList([...productList, [product]]);
       setScanned(false);
     };
 
