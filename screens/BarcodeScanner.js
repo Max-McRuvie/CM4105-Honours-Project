@@ -10,11 +10,14 @@ const BarcodeScanner = () => {
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState("Not yet scanned");
     const [productList, updateProductList] = useState([]);
-    /*
-    useEffect(() => {
-      askPermissions();
-    }, [hasPermission]);
-    */
+    const navigation = useNavigation();
+
+    
+    // useEffect(() => {
+    //   askPermissions();
+    // }, [hasPermission]);
+    
+   
     const askPermissions = () => {
       (async () => {
         console.log("Asking for permissions");
@@ -58,8 +61,8 @@ const BarcodeScanner = () => {
       )}
       else {
         Alert.alert(
-          "Alert Title", 
-          `The product scanned is made by ${productInformation.brand_name}, the product is ${productInformation.product_name}`,
+          "Is this the product you want to add?", 
+          `Brand: ${productInformation.brand_name ? productInformation.brand_name : 'Brand name not found' } \nProduct: ${productInformation.product_name}`,
           [
               {
                   text: "Cancel",
@@ -67,7 +70,7 @@ const BarcodeScanner = () => {
                   style: "cancel"
               },
               { 
-                  text: "This product is correct", 
+                  text: "Yes", 
                   onPress: () => addProductToList(productInformation),
                   style: "ok"
               }
@@ -85,7 +88,7 @@ const BarcodeScanner = () => {
               style={{ height: '90%', width: '100%' }}
             />
             <TouchableOpacity
-              onPress={() => console.log(productList)}
+              onPress={() => navigation.navigate('Nutrition', {productList})}
               style={styles.button}
               >
               <Text style={styles.buttonText}>View Scanned Item/Items</Text>

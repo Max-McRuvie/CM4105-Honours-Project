@@ -2,20 +2,23 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import NavigationBar from '../components/NavigationBar'
 
-const NutritionScreen = () => {
-  return (
-    <View style={styles.container}>
-        <View style={styles.topContainer}> 
-                <Text style={{fontSize: 30}}>Nutrition</Text>
-        </View>
+const NutritionScreen = ({route}) => {
+    const productList = route.params.productList
+    console.log(productList)
+    return (
+        <View style={styles.container}>
+            <View style={styles.topContainer}> 
+                <Text style={{fontSize: 30}}>Nutrition Information</Text>
+            </View>
         
-        <View style={styles.middleContainer}>
+            <View style={styles.middleContainer}>
+               <Text style={{fontSize: 30}}></Text>    
+            </View>
+            <View style={styles.footerContainer}>
+                <NavigationBar />
+            </View>
         </View>
-        <View style={styles.footerContainer}>
-            <NavigationBar />
-        </View>
-    </View>
-  )
+    )
 }
 
 export default NutritionScreen
