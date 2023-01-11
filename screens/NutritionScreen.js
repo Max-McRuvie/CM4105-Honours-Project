@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React from 'react'
+import React, {useContext} from 'react'
 import NavigationBar from '../components/NavigationBar'
+import {ProductListContext} from '../components/ProductListContext';
 
-const NutritionScreen = ({route}) => {
-    const productList = route.params ? [...route.params.productList] : undefined
-    
-    //console.log(route.params.productList)
+const NutritionScreen = () => {
+    const { productList } = useContext(ProductListContext)
 
-    if(!productList){
+
+
+    if(productList.length === 0){
         return (
             <>
                 <Text style={{fontSize: 30}}>No list present</Text>
@@ -23,7 +24,7 @@ const NutritionScreen = ({route}) => {
                 <View style={styles.middleContainer}>
                     <Text style={{fontSize: 30}}></Text>
                 </View>
-                
+
                 <View style={styles.footerContainer}>
                     <NavigationBar />
                 </View>

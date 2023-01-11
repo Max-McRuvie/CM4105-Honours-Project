@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Button, Image, TextInput, StatusBar, Alert, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
 import { useNavigation } from '@react-navigation/native';
-import AppContext from '../components/AppContext';
+import {ProductListContext} from '../components/ProductListContext';
 
 
 const BarcodeScanner = () => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState("Not yet scanned");
-    const [productList, updateProductList] = useState([]);
+    //const [productList, updateProductList] = useState([]);
     const navigation = useNavigation();
     // useEffect(() => {
     //   askPermissions();
     // }, [hasPermission]);
-    
+    //ListFunctions: addProductToList
    
+    const productContext = useContext(ProductListContext)
+    
+    const addProductToList = (product) => {
+        productContext.updateProductList([...productContext.productList, product]);
+        setScanned(false)
+    };
+
+    console.log(productContext.productList)
+
     const askPermissions = () => {
       (async () => {
         console.log("Asking for permissions");
@@ -25,14 +34,10 @@ const BarcodeScanner = () => {
       })();
     };
 
-    const addProductToList = (product) => {
-      updateProductList([...productList, [product]]);
-      setScanned(false);
-    };
 
     const moveToNutitionScreen = () => {
       setScanned(false)
-      navigation.navigate('Nutrition', {productList})
+      navigation.navigate('Nutrition')
     }
 
     const handleBarCodeScanned = async ({ type, data }) => {
