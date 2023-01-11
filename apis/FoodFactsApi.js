@@ -14,7 +14,7 @@ export default async function getProductInformation (data) {
                 brand_name: response.product.brands,
                 product_name: response.product.product_name,
                 nutriments: response.product.nutriments,
-                ingredients: response.product.ingredients
+                ingredients: response.product.ingredients.map((ingredient) => (ingredient.text)),
             };
         }
     })

@@ -24,8 +24,6 @@ const BarcodeScanner = () => {
         setScanned(false)
     };
 
-    console.log(productContext.productList)
-
     const askPermissions = () => {
       (async () => {
         console.log("Asking for permissions");
