@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Button, Image, TextInput, StatusBar, Alert, Tou
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
 import { useNavigation } from '@react-navigation/native';
+import AppContext from '../components/AppContext';
 
 
 const BarcodeScanner = () => {
@@ -11,8 +12,6 @@ const BarcodeScanner = () => {
     const [text, setText] = useState("Not yet scanned");
     const [productList, updateProductList] = useState([]);
     const navigation = useNavigation();
-
-    
     // useEffect(() => {
     //   askPermissions();
     // }, [hasPermission]);
@@ -31,10 +30,15 @@ const BarcodeScanner = () => {
       setScanned(false);
     };
 
+    const moveToNutitionScreen = () => {
+      setScanned(false)
+      navigation.navigate('Nutrition', {productList})
+    }
+
     const handleBarCodeScanned = async ({ type, data }) => {
       setScanned(true);
       const productInformation = await getProductInformation(data)
-      console.log(productInformation)
+      //console.log(productInformation)
       if(productInformation == "Product not found") {
         Alert.alert(
           "Alert Title",
@@ -47,7 +51,7 @@ const BarcodeScanner = () => {
             }
           ]
       )} 
-      else if (!productInformation.nutriments || !productInformation.ingredients) {
+      else if (!productInformation.nutriments) {
         Alert.alert(
           "Alert Title",
           `Unable to retrieve nutritional information for this product`,
@@ -88,7 +92,7 @@ const BarcodeScanner = () => {
               style={{ height: '90%', width: '100%' }}
             />
             <TouchableOpacity
-              onPress={() => navigation.navigate('Nutrition', {productList})}
+              onPress={() => moveToNutitionScreen()}
               style={styles.button}
               >
               <Text style={styles.buttonText}>View Scanned Item/Items</Text>

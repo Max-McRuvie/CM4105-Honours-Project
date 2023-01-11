@@ -1,24 +1,35 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 import NavigationBar from '../components/NavigationBar'
 
 const NutritionScreen = ({route}) => {
-    const productList = route.params.productList
-    console.log(productList)
-    return (
-        <View style={styles.container}>
-            <View style={styles.topContainer}> 
-                <Text style={{fontSize: 30}}>Nutrition Information</Text>
+    const productList = route.params ? [...route.params.productList] : undefined
+    
+    //console.log(route.params.productList)
+
+    if(!productList){
+        return (
+            <>
+                <Text style={{fontSize: 30}}>No list present</Text>
+            </>
+        )
+    } else {
+        return (
+            <View style={styles.container}>
+                <View style={styles.topContainer}> 
+                    <Text style={{fontSize: 30}}>Nutrition Information</Text>
+                </View>
+
+                <View style={styles.middleContainer}>
+                    <Text style={{fontSize: 30}}></Text>
+                </View>
+                
+                <View style={styles.footerContainer}>
+                    <NavigationBar />
+                </View>
             </View>
-        
-            <View style={styles.middleContainer}>
-               <Text style={{fontSize: 30}}></Text>    
-            </View>
-            <View style={styles.footerContainer}>
-                <NavigationBar />
-            </View>
-        </View>
-    )
+        )
+    }
 }
 
 export default NutritionScreen
