@@ -12,7 +12,22 @@ const LoginScreen = ({navigation}) => {
             await signInWithEmailAndPassword(auth, email, password)
             navigation.navigate('Home')
         } catch (err) {
-            console.log(err)
+            switch(err.code){
+                case 'auth/invalid-email':
+                    alert('Invalid email')
+                    break;
+                case 'auth/user-disabled':
+                    alert('User disabled')
+                    break;
+                case 'auth/user-not-found':
+                    alert('User not found')
+                    break;
+                case 'auth/wrong-password':
+                    alert('Wrong password')
+                    break;
+                default:
+                    console.log(err)
+            }
         }
     }
 
