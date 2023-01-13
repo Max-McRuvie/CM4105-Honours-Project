@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import { Text, View, StyleSheet, Button, Image, TextInput, StatusBar, Alert, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
@@ -7,45 +7,42 @@ import {ProductListContext} from '../components/ProductListContext';
 
 
 const BarcodeScanner = () => {
-    const [hasPermission, setHasPermission] = useState(null);
+    const [hasPermission, setHasPermission] = useState(false);
     const [scanned, setScanned] = useState(false);
-    const [text, setText] = useState("Not yet scanned");
-    //const [productList, updateProductList] = useState([]);
+
     const navigation = useNavigation();
-    // useEffect(() => {
-    //   askPermissions();
-    // }, [hasPermission]);
-    //ListFunctions: addProductToList
-   
     const productContext = useContext(ProductListContext)
     
-    const addProductToList = (product) => {
-        productContext.updateProductList([...productContext.productList, product]);
-        setScanned(false)
-    };
+    useEffect(() => {
+      const askPermissions = async () => {
+        try{
+          const { status } = await BarCodeScanner.requestPermissionsAsync();
+          if(status === "granted"){
+            setHasPermission(true);
+          } else {
+            Alert.alert("Error", "Camera permission not granted")
+          }
+        } catch (error) {
+          Alert.alert("Error", "There was an error while requesting camera permission")
+        }
+      };
+      askPermissions();
+    }, []);
 
-    const askPermissions = () => {
-      (async () => {
-        console.log("Asking for permissions");
-        const { status } = await BarCodeScanner.requestPermissionsAsync();
-        setHasPermission(status == "granted");
-      })();
-    };
 
-
-    const moveToNutitionScreen = () => {
+    const addProductToList = useCallback((product) => {
+      productContext.updateProductList([...productContext.productList, product]);
       setScanned(false)
-      navigation.navigate('Nutrition')
-    }
+    },[productContext.productList])
 
-    const handleBarCodeScanned = async ({ type, data }) => {
-      setScanned(true);
+    const handleBarCodeScanned = useCallback(async ({ data }) => {
+      setScanned(true)
       const productInformation = await getProductInformation(data)
-      //console.log(productInformation)
-      if(productInformation == "Product not found") {
+
+      productInformation == "Product not found" || !productInformation.nutriments ? (
         Alert.alert(
           "Alert Title",
-          `The product scanned is not found in our database`,
+          `The product scanned is not found in our database` || `Unable to retrieve nutritional information for this product`,
           [
             {
                 text: "Cancel",
@@ -53,20 +50,8 @@ const BarcodeScanner = () => {
                 style: "cancel"
             }
           ]
-      )} 
-      else if (!productInformation.nutriments) {
-        Alert.alert(
-          "Alert Title",
-          `Unable to retrieve nutritional information for this product`,
-          [  
-            {
-              text: "Cancel",
-              onPress: () => setScanned(false),
-              style: "cancel"
-            }
-          ]
-      )}
-      else {
+        )
+      ) : ( 
         Alert.alert(
           "Is this the product you want to add?", 
           `Brand: ${productInformation.brand_name ? productInformation.brand_name : 'Brand name not found' } \nProduct: ${productInformation.product_name}`,
@@ -82,43 +67,45 @@ const BarcodeScanner = () => {
                   style: "ok"
               }
           ]
-        );
-      }
-    };
+        )
+      );
+    }, [scanned, addProductToList]);
 
-    if (hasPermission && hasPermission) {
-        console.log("Camera opened, permission true");
-        return (
-          <View>
-            <BarCodeScanner
-              onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-              style={{ height: '90%', width: '100%' }}
-            />
-            <TouchableOpacity
-              onPress={() => moveToNutitionScreen()}
-              style={styles.button}
-              >
-              <Text style={styles.buttonText}>View Scanned Item/Items</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      }
-  
     return (
       <View>
-        <View>  
-          <TextInput
-            placeholder="Enter barcode"
-            style={{
-              borderBottomColor: "black",
-              borderBottomWidth: 1,
-              padding: 10,
-              marginBottom: 10,
-            }}
-          />
-          <Button title="Open camera" onPress={askPermissions} />
-          <StatusBar style="auto" />
-        </View>
+        {hasPermission ? (
+              <View>
+                <BarCodeScanner
+                  onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                  style={{ height: '90%', width: '100%' }}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    setScanned(false);
+                    navigation.navigate("Nutrition");
+                  }}
+                  style={styles.button}
+                  >
+                  <Text style={styles.buttonText}>View Scanned Item/Items</Text>
+                </TouchableOpacity>
+              </View>
+        ) : (
+          <View>
+            <View>  
+              <TextInput
+                placeholder="Enter barcode"
+                style={{
+                  borderBottomColor: "black",
+                  borderBottomWidth: 1,
+                  padding: 10,
+                  marginBottom: 10,
+                }}
+              />
+              <Button title="Open camera" onPress={() => setScanned(true)} />
+              <StatusBar style="auto" />
+            </View>
+          </View>
+        )}
       </View>
     );
 };
