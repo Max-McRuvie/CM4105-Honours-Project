@@ -1,34 +1,11 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth } from '../firebase/firebaseConfig'
+import React, { useState } from 'react'
+import { registerWithEmailAndPassword } from '../firebase/firebaseConfig'
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const register = async (name, email, password) => {
-        try {
-            await createUserWithEmailAndPassword(auth, email, password)
-            await updateProfile(auth.currentUser, { displayName: name })
-            navigation.navigate('Home')
-        } catch (err) {
-            switch(err.code) {
-                case 'auth/email-already-in-use':
-                    alert('Email already in use')
-                    break;
-                case 'auth/invalid-email':
-                    alert('Invalid email')
-                    break;
-                case 'auth/weak-password':
-                    alert('Weak password')
-                    break;
-                default:
-                    console.log(err)
-            }
-        }
-      };
 
 
     return (
@@ -69,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     
                     <TouchableOpacity
-                        onPress={() => register(name, email, password)}
+                        onPress={() => registerWithEmailAndPassword(name, email, password)}
                         style={[styles.button, styles.buttonOutline]}
                     >
                         <Text style={styles.buttonOutlineText}>Register</Text>
