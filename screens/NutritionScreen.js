@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React, {useContext} from 'react'
 import NavigationBar from '../components/NavigationBar'
-import {ProductListContext} from '../components/ProductListContext';
+import {ProductListContext} from '../context/ProductListContext';
 
 const NutritionScreen = () => {
     const { productList } = useContext(ProductListContext)

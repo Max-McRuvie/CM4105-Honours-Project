@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, TextInput, StatusBar, Alert, TouchableO
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
 import { useNavigation } from '@react-navigation/native';
-import {ProductListContext} from '../components/ProductListContext';
+import {ProductListContext} from '../context/ProductListContext';
 
 // This component allows the user to scan barcodes and adds the product information to the product list
 const BarcodeScanner = () => {
@@ -37,7 +37,6 @@ const BarcodeScanner = () => {
     };
     askPermissions();
   }, []);
-
 
   // useCallback hook to update the scanned products list and set scanned state to false
   const addProductToList = useCallback((product) => {
