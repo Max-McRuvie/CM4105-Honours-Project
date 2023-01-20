@@ -19,10 +19,6 @@ const Stack = createStackNavigator();
 //Defining an object with default options for all stack screens
 const stackScreenOptions = { headerShown: false };
 
-const createStackScreens = (screens, options) => screens.map(({ name, component }) => (
-  <Stack.Screen key={name} name={name} component={component} options={options} />
-));
-
 // Creating an array of stack screens and mapping through it to create the screens
 const signedInScreens = [
   { name: "Home", component: HomeScreen },
@@ -37,6 +33,9 @@ const signedOutScreens = [
   { name: "Register", component: RegisterScreen },
 ]
 
+const createStackScreens = (screens, options) => screens.map(({ name, component }) => (
+  <Stack.Screen key={name} name={name} component={component} options={options} />
+));
 
 // Exported App function component
 export default function App() {
