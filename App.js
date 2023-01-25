@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { ProductListContextProvider } from './context/ProductListContext';
+import { AppContextProvider } from './context/AppContext';
 import { auth } from './firebase/firebaseConfig'
 
 import HomeScreen from './screens/HomeScreen';
@@ -60,11 +60,11 @@ export default function App() {
 
   // FIXME: Users name is not displayed on initial load of home screen, but is displayed on subsequent loads
   return user ? (
-    <ProductListContextProvider>
+    <AppContextProvider>
       <NavigationContainer>
         <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
       </NavigationContainer>
-    </ProductListContextProvider>
+    </AppContextProvider>
   ) : (
     <NavigationContainer>
       <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>

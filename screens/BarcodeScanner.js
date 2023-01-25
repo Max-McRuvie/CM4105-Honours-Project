@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, TextInput, StatusBar, Alert, TouchableO
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
 import { useNavigation } from '@react-navigation/native';
-import {ProductListContext} from '../context/ProductListContext';
+import {AppContext} from '../context/AppContext';
 
 // This component allows the user to scan barcodes and adds the product information to the product list
 const BarcodeScanner = () => {
@@ -15,8 +15,10 @@ const BarcodeScanner = () => {
   // Hook to access navigation object for navigation between screens
   const navigation = useNavigation();
   // Hook to access the context containing the list of scanned products
-  const productContext = useContext(ProductListContext)
-  
+  const context = useContext(AppContext)
+  // Assign the product list context to a variable for easier access
+  const products = context.productListState
+
   // Use effect to request camera permissions on component mount
   useEffect(() => {
     const askPermissions = async () => {
@@ -41,10 +43,10 @@ const BarcodeScanner = () => {
   // useCallback hook to update the scanned products list and set scanned state to false
   const addProductToList = useCallback((product) => {
     // update the product list context with the new product
-    productContext.updateProductList([...productContext.productList, product]);
+    products.updateProductList([...products.productList, product]);
     // reset the scanned state
     setScanned(false)
-  },[productContext.productList])
+  },[products.productList])
 
   // useCallback hook to handle barcode scanned event
   const handleBarCodeScanned = useCallback(async ({ data }) => {

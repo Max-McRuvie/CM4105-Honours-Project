@@ -1,24 +1,31 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React, {useContext} from 'react'
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
+import React, {useContext, useCallback} from 'react'
 import NavigationBar from '../components/NavigationBar'
-import {ProductListContext} from '../context/ProductListContext';
+import {AppContext} from '../context/AppContext';
+import getRecipies from'../apis/SpoonacularApi.js'
+import { useNavigation } from '@react-navigation/native';
 
 const NutritionScreen = () => {
-    const { productList } = useContext(ProductListContext)
+    const navigation = useNavigation();
+    const context = useContext(AppContext)
+
+    // Assign the product list context to a variable for easier access
+    const products = context.productListState
+
 
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}> 
                 <Text style={{fontSize: 30}}>Nutrition Page</Text>
             </View>
-            {productList.length === 0 ? (
+            {products.productList.length === 0 ? (
                 <View style={styles.middleContainer}>
                     <Text style={{fontSize: 30}}>No list present</Text>
                 </View>
             ) : (
                 <View style={styles.middleContainer}>
                     <ScrollView>
-                        {productList.map((product, index) => (
+                        {products.productList.map((product, index) => (
                             <View key={index} style={styles.productContainer}>
                                 <Text style={styles.productTitle}>
                                     Product Name: {product.product_name}
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
     },
     middleContainer: {
         width: '100%',
-        height: '70%',
+        height: '68%',
         paddingLeft: '10%',
     },
     footContainer: {
