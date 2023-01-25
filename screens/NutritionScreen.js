@@ -11,7 +11,19 @@ const NutritionScreen = () => {
 
     // Assign the product list context to a variable for easier access
     const products = context.productListState
+    const recipes = context.recipeListState
 
+    const categoryList = products.productList.map((product) => {
+        return product.category
+    }, [])
+
+    // useCallback hook to update the scanned products list and set scanned state to false
+  const getRecipeList = useCallback(async () => {
+    let recipies = await getRecipies(categoryList)
+    // update the product list context with the new product
+    await recipes.updateRecipeList([...recipes.recipeList, recipies]);
+    // reset the scanned state
+  },[recipes.recipeList])
 
     return (
         <View style={styles.container}>
@@ -73,6 +85,11 @@ const NutritionScreen = () => {
                 </View>
             )}
                 <View style={styles.footerContainer}>
+                    <Button title="Look at Recipes" style={styles.button} onPress={() => 
+                        {
+                            getRecipeList()
+                            navigation.navigate('Recipes')
+                        }}/>
                     <NavigationBar />
                 </View>
             </View>
