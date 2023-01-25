@@ -99,3 +99,6 @@ babel.config.js
 
 # metro
 metro.config.js
+
+# Api configs
+/apis
