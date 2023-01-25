@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { auth } from '../firebase/firebaseConfig'
 import NavigationBar from '../components/NavigationBar'
@@ -7,12 +7,14 @@ const HomeScreen = () => {
     
     const [name, setName] = useState('')
 
+
+    // FIXME: Users name is not displayed on initial load
     useEffect(() => {
-        auth.onAuthStateChanged((authUser) => {
-            if (authUser) {
-                setName(authUser.displayName)
-            }
-        })
+        const usersName = async () => {
+            const user = await auth.currentUser
+            setName(user.displayName)
+        }
+        usersName()
     }, [])
 
     return (
@@ -22,10 +24,11 @@ const HomeScreen = () => {
             </View>
             
             <View style={styles.middleContainer}>
-
+                <Button title="Logout" style={styles.button} onPress={() => auth.signOut()} />
             </View>
 
             <View style={styles.footerContainer}>
+
                 <NavigationBar />
             </View>
         </View>
@@ -53,4 +56,8 @@ const styles = StyleSheet.create({
     footContainer: {
         height: '30%',
     },
+    button: {
+        height: 20,
+        width: 20,
+    }
 })
