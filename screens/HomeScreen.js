@@ -20,11 +20,13 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}> 
-                    <Text style={{fontSize: 30}}>Hello {name}</Text>
+                    <Text style={{fontSize: 30}}>Welcome {name || ''}</Text>
             </View>
             
             <View style={styles.middleContainer}>
-                <Button title="Logout" style={styles.button} onPress={() => auth.signOut()} />
+                <Text style={{fontSize: 15}}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet iaculis augue, vitae tempus ligula. Curabitur luctus imperdiet est, vitae accumsan elit posuere in. Phasellus quis malesuada odio. Curabitur cursus ut massa ac auctor. Nunc vitae sapien non lacus molestie egestas. Curabitur consequat, nibh et eleifend suscipit, nisi nisi condimentum eros, non congue nulla quam non ipsum. Phasellus ornare nisi at dui porttitor, non ultricies turpis volutpat. Vestibulum et consequat odio.
+                </Text>
             </View>
 
             <View style={styles.footerContainer}>
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
         width: '80%',
         height: '60%',
         alignItems: 'center',
+        paddingLeft: '10%',
     },
     footContainer: {
         height: '30%',
