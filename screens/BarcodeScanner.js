@@ -11,6 +11,8 @@ const BarcodeScanner = () => {
   const [hasPermission, setHasPermission] = useState(false);
   // State to track if a barcode has been scanned
   const [scanned, setScanned] = useState(false);
+  // State to track the manual barcode input
+  const [manualBarcodeInput, setManualBarcodeInput] = useState('') 
 
   // Hook to access navigation object for navigation between screens
   const navigation = useNavigation();
@@ -48,13 +50,39 @@ const BarcodeScanner = () => {
     setScanned(false)
   },[products.productList])
 
+  const handleManualInput = useCallback(async ( barcode ) => {
+    console.log(barcode)
+    if(!barcode) return Alert.alert("Error", "Please enter a barcode")
+
+    const productInformation = await getProductInformation(barcode)
+
+    Alert.alert(
+      "Is this the product you want to add?", 
+       `Brand: ${productInformation.brand_name ? productInformation.brand_name : 'Brand name not found' } \nProduct: ${productInformation.product_name}`,
+      [
+          {
+              text: "Cancel",
+              // reset scanned state
+              onPress: () => setScanned(false),
+              style: "cancel"
+          },
+           { 
+              text: "Yes", 
+              // add the product to the list
+              onPress: () => addProductToList(productInformation),
+              style: "ok"
+           }
+      ]
+    )
+  })
+
   // useCallback hook to handle barcode scanned event
   const handleBarCodeScanned = useCallback(async ({ data }) => {
     // set scanned state to true
     setScanned(true)
     // get the product information from the API
     const productInformation = await getProductInformation(data)
-
+    console.log(productInformation)
     // check if the product is not found or if there is no nutriments data
     productInformation == "Product not found" || !productInformation.nutriments ? (
       // Alert the user that the product was not found or that there is no nutritional information 
@@ -121,14 +149,36 @@ const BarcodeScanner = () => {
           <View>  
             <TextInput
               placeholder="Enter barcode"
+              value={manualBarcodeInput}
+              onChangeText={text => setManualBarcodeInput(text)}
               style={{
                 borderBottomColor: "black",
                 borderBottomWidth: 1,
-                 padding: 10,
-                  marginBottom: 10,
+                padding: 10,
+                marginBottom: 10,
               }}
             />
             <Button title="Open camera" onPress={() => setScanned(true)} />
+            <TouchableOpacity
+                onPress={() => {
+                  // navigate to the nutrition screen
+                  handleManualInput(manualBarcodeInput)
+                }}
+                style={styles.button}
+                >
+                <Text style={styles.buttonText}>Search Item</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  // reset scanned state
+                  setScanned(false);
+                  // navigate to the nutrition screen
+                  navigation.navigate("Nutrition");
+                }}
+                style={styles.button}
+                >
+                <Text style={styles.buttonText}>View Scanned Item/Items</Text>
+              </TouchableOpacity>
             <StatusBar style="auto" />
           </View>
         </View>
