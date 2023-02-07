@@ -18,12 +18,13 @@ const NutritionScreen = () => {
     }, [])
 
     // useCallback hook to update the scanned products list and set scanned state to false
-  const getRecipeList = useCallback(async () => {
-    let recipies = await getRecipies(categoryList)
-    // update the product list context with the new product
-    await recipes.updateRecipeList([...recipes.recipeList, recipies]);
-    // reset the scanned state
-  },[recipes.recipeList])
+    const getRecipeList = useCallback(async () => {
+        let recipies = await getRecipies(categoryList)
+        // update the product list context with the new product
+        await recipes.updateRecipeList([...recipes.recipeList, recipies]);
+        // Navigate to the recipe page
+        navigation.navigate('Recipes')
+    },[recipes.recipeList])
 
     return (
         <View style={styles.container}>
@@ -40,9 +41,12 @@ const NutritionScreen = () => {
                         {products.productList.map((product, index) => (
                             <View key={index} style={styles.productContainer}>
                                 <Text style={styles.productTitle}>
+                                    Item {index + 1}
+                                </Text>
+                                <Text style={styles.productName}>
                                     Product Name: {product.product_name}
                                 </Text>
-                                <Text style={styles.product }>
+                                <Text style={styles.product}>
                                     Brand Name: {product.brand_name}
                                 </Text>
                                 <View style={styles.ingredientsContainer}>
@@ -88,7 +92,6 @@ const NutritionScreen = () => {
                     <Button title="Look at Recipes" style={styles.button} onPress={() => 
                         {
                             getRecipeList()
-                            navigation.navigate('Recipes')
                         }}/>
                     <NavigationBar />
                 </View>
@@ -118,5 +121,20 @@ const styles = StyleSheet.create({
     },
     footContainer: {
         height: '30%',
+    },
+    productTitle: {
+        fontSize: 20,
+    },
+    productName: {
+        paddingLeft: 10,
+    },
+    product: {
+        paddingLeft: 10,
+    },     
+    ingredientsContainer: {
+        paddingLeft: 10,
+    }, 
+    nutritionContainer: {
+        paddingLeft: 10,
     },
 })
