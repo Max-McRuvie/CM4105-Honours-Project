@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import NavigationBar from '../components/NavigationBar'
+import { auth } from '../firebase/firebaseConfig'
 
 const ProfileScreen = () => {
   return (
@@ -10,6 +11,7 @@ const ProfileScreen = () => {
         </View>
         
         <View style={styles.middleContainer}>
+            <Button title="Logout" style={styles.button} onPress={() => auth.signOut()} />
         </View>
         <View style={styles.footerContainer}>
             <NavigationBar />
