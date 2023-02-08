@@ -22,7 +22,7 @@ const NavigationBar = () => {
           <Image source={require('./images/CameraIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Recipe Button */}
-        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('Recipes')}>
+        <TouchableOpacity style={styles.iconBackground} activeOpacity={0.5} onPress={() => navigation.navigate('RecipesList')}>
           <Image source={require('./images/RecipeIcon.png')} style={styles.ImageIconStyle} />
         </TouchableOpacity>
         {/* Profile Button */}
