@@ -1,24 +1,34 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, ScrollView, Button, Image } from 'react-native'
+import React, {useContext} from 'react'
 import NavigationBar from '../components/NavigationBar'
+import {AppContext} from '../context/AppContext';
+import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const RecipeScreen = () => {
-  return (
-    <View style={styles.container}>
-        <View style={styles.topContainer}> 
-                <Text style={{fontSize: 30}}>Recipies</Text>
+const RecipeIndivisualScreen = (prop) => {
+    const navigation = useNavigation();
+    const recipe = prop.route.params
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <Text style={{ fontSize: 30 }}>{recipe.title}</Text>
         </View>
-        
         <View style={styles.middleContainer}>
+            <Image source={{uri: recipe.image}} style={{width: 100, height: 100}} /> 
+            <Text> {}</Text>
+
         </View>
+
         <View style={styles.footerContainer}>
-            <NavigationBar />
-        </View>
-    </View>
-  )
+                    <NavigationBar />
+                </View>
+      </View>
+      
+    );
 }
 
-export default RecipeScreen
+export default RecipeIndivisualScreen
 
 const styles = StyleSheet.create({
     container: {
@@ -27,14 +37,15 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         width: '80%',
-        height: '30%',
+        height: '10%',
+        marginTop: '20%',
         justifyContent: 'center',
         marginLeft: "10%",
     },
     middleContainer: {
-        width: '80%',
-        height: '60%',
-        alignItems: 'center',
+        width: '100%',
+        height: '68%',
+        paddingLeft: '10%',
     },
     footContainer: {
         height: '30%',
