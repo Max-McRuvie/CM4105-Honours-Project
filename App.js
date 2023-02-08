@@ -9,9 +9,10 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import NutritionScreen from './screens/NutritionScreen';
-import RecipeScreen from './screens/RecipeScreen';
+import RecipeListScreen from './screens/RecipeListScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import BarcodeScanner from './screens/BarcodeScanner';
+import RecipeScreen from './screens/RecipeScreen';
 
 
 const Stack = createStackNavigator();
@@ -22,10 +23,11 @@ const stackScreenOptions = { headerShown: false };
 // Creating an array of stack screens and mapping through it to create the screens
 const signedInScreens = [
   { name: "Home", component: HomeScreen },
-  { name: "Nutrition", component: NutritionScreen },
-  { name: "Recipes", component: RecipeScreen },
-  { name: "Profile", component: ProfileScreen },
   { name: "BarcodeScanner", component: BarcodeScanner },
+  { name: "Nutrition", component: NutritionScreen },
+  { name: "RecipesList", component: RecipeListScreen },
+  { name: "Recipe", component: RecipeScreen},
+  { name: "Profile", component: ProfileScreen },
 ]
 
 const signedOutScreens = [
