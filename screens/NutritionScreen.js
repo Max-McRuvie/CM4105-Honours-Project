@@ -19,11 +19,11 @@ const NutritionScreen = () => {
 
     // useCallback hook to update the scanned products list and set scanned state to false
     const getRecipeList = useCallback(async () => {
-        let recipies = await getRecipies(categoryList)
+        let recipiesResponse = await getRecipies(categoryList)
         // update the product list context with the new product
-        await recipes.updateRecipeList([...recipes.recipeList, recipies]);
+        recipes.updateRecipeList([...recipes.recipeList, recipiesResponse]);
         // Navigate to the recipe page
-        navigation.navigate('Recipes')
+        navigation.navigate('RecipesList')
     },[recipes.recipeList])
 
     return (
