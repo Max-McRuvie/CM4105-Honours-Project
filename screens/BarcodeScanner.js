@@ -129,8 +129,19 @@ const BarcodeScanner = () => {
             <View>
               <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                style={{ height: '90%', width: '100%' }}
+                style={{ height: '75%', width: '100%' }}
               />
+              <TouchableOpacity
+                onPress={() => {
+                  // reset scanned state
+                  setScanned(false);
+                  // navigate to the nutrition screen
+                  navigation.navigate("Home");
+                }}
+                style={styles.button}
+                >
+                <Text style={styles.buttonText}>Return</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
                   // reset scanned state
