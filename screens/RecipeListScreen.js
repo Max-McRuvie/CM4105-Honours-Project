@@ -23,18 +23,21 @@ const RecipeScreen = () => {
         </View>
         {recipeContext.recipeList.length === 0 ? (
             <View style={styles.middleContainer}>
-                <Text style={{fontSize: 30}}>No list present</Text>
+                <Text style={{fontSize: 30, paddingLeft: '5%'}}>No items have been searched</Text>
             </View>
         ) : (
             <View style={styles.middleContainer}>
                 <ScrollView>
                     {recipeContext.recipeList[0].map((recipe, index) => (
-                        <View key={index} style={styles.recipeContainer}>
-                            <TouchableOpacity onPress={() => {navigation.navigate('Recipe', recipe)}}>
-                                <Text style={styles.recipeName}>
-                                    {recipe.title}
-                                </Text>
-                                <Image source={{uri: recipe.image}} style={styles.image} />
+                        <View key={index} style={styles.recipeListContainer}>
+                            <TouchableOpacity onPress={() => {navigation.navigate('Recipe', recipe)}} style={styles.recipeContainer}>
+                                <View>
+                                     <Text style={styles.recipeName}>
+                                        {recipe.title}
+                                    </Text>
+                                    <Image source={{uri: recipe.image}} style={styles.image} />   
+                                </View>
+                                
                             </TouchableOpacity>
                             </View>
                     ))}
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     footContainer: {
         height: '30%',
     },
-    recipeContainer: {
+    recipeListContainer: {
         width: '95%',
         height: 150,
         justifyContent: 'space-between',
@@ -82,6 +85,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
     },
+    recipeContainer: {
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        alignContent: 'center',
+    },
     recipeId: {
         fontSize: 20,
     },
@@ -89,11 +98,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     image: {
-        width: 100,
+        width: 150,
         height: 100,
         borderRadius: 10,
     }
-
-    
-
 })
