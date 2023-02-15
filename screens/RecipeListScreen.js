@@ -19,7 +19,7 @@ const RecipeScreen = () => {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={{ fontSize: 30 }}>Recipes Page</Text>
+          <Text style={{ fontSize: 30, paddingTop: 20}}>Recipes Page</Text>
         </View>
         {recipeContext.recipeList.length === 0 ? (
             <View style={styles.middleContainer}>
@@ -31,13 +31,20 @@ const RecipeScreen = () => {
                     {recipeContext.recipeList[0].map((recipe, index) => (
                         <View key={index} style={styles.recipeListContainer}>
                             <TouchableOpacity onPress={() => {navigation.navigate('Recipe', recipe)}} style={styles.recipeContainer}>
-                                <View>
-                                     <Text style={styles.recipeName}>
+                                <Image source={{uri: recipe.image}} style={styles.image} resizeMode='contain' />
+                                <View style={{width: '60%', paddingLeft: '2%'}}>
+                                    <Text style={styles.recipeName}>
                                         {recipe.title}
                                     </Text>
-                                    <Image source={{uri: recipe.image}} style={styles.image} />   
+                                    <Text style={{fontSize: 15, paddingTop: '5%'}}>
+                                        usedIngredientCount: {recipe.usedIngredientCount}
+                                    </Text>
+                                    <Text style={{fontSize: 15}}>
+                                        missedIngredientCount: {recipe.missedIngredientCount}
+                                    </Text>
+
+                                    
                                 </View>
-                                
                             </TouchableOpacity>
                             </View>
                     ))}
@@ -63,26 +70,23 @@ const styles = StyleSheet.create({
     topContainer: {
         width: '80%',
         height: '10%',
-        marginTop: '20%',
         justifyContent: 'center',
         marginLeft: "10%",
     },
     middleContainer: {
         width: '100%',
-        height: '68%',
+        height: '84%',
         paddingLeft: '5%',
     },
     footContainer: {
-        height: '30%',
+        height: '10%',
     },
     recipeListContainer: {
         width: '95%',
-        height: 150,
-        justifyContent: 'space-between',
+        height: 120,
+        flexDirection: 'row',
         alignContent: 'center',
-        backgroundColor: 'lightgrey',
-        marginBottom: 10,
-        borderRadius: 10,
+        marginTop: 10,
         padding: 10,
     },
     recipeContainer: {
