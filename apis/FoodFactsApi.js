@@ -12,7 +12,7 @@ export default async function getProductInformation(data) {
   )
     .then((response) => response.json())
     .then((response) => {
-      console.log(response.product.categories)
+      // console.log(response.product.categories)
       let categoryList = response.product.categories.split(",");
       
       if (response.status_verbose == "product not found") {
