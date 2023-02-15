@@ -47,10 +47,11 @@ export default NavigationBar
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     height: '30%',
-    marginLeft: '5%',
-    marginRight: '5%',
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#000',
   },
   navigationContainer: {
     flex: 1,
@@ -62,12 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    borderWidth: 0.5,
-    borderColor: '#000',
-    borderWidth: 1,
-    height: '60%',
-    borderRadius: 10,
-    margin: 5,
+    margin: 0,
     height: 50,
   },
   ImageIconStyle: {
