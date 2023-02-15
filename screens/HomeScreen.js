@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     },
     middleContainer: {
         width: '80%',
-        height: '60%',
+        height: '64%',
         alignItems: 'center',
         paddingLeft: '10%',
     },
     footContainer: {
-        height: '30%',
+        height: '10%',
     },
     button: {
         height: 20,
