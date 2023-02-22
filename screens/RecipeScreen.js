@@ -9,14 +9,30 @@ const RecipeIndivisualScreen = (prop) => {
     const navigation = useNavigation();
     const recipe = prop.route.params
 
+    console.log(recipe)
+
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={{ fontSize: 30 }}>{recipe.title}</Text>
+        <Image source={{uri: recipe.image}} style={styles.recipeImage} resizeMode='contain'/> 
         </View>
         <View style={styles.middleContainer}>
-            <Image source={{uri: recipe.image}} style={{width: 100, height: 100}} /> 
-            <Text> {}</Text>
+            <Text style={{fontSize: 30 }}>{recipe.title}</Text>
+            <Text style={{fontSize: 20, paddingTop: '5%'}}>Ingredients</Text>
+            {recipe.missedIngredients.map((ingredient, index) => (
+                    <View key={index} style={styles.ingredientContainer}>
+                        <Text style={styles.ingredientName}>{ingredient.name}</Text> 
+                        <Text style={styles.ingredientName}>{ingredient.amount} {ingredient.unit}</Text>
+                    </View>
+            ))}
+            {recipe.usedIngredients.map((ingredient, index) => (
+                    <View key={index} style={styles.ingredientContainer}>
+                        <Text style={styles.ingredientName}>{ingredient.name}</Text> 
+                        <Text style={styles.ingredientName}>{ingredient.amount} {ingredient.unit}</Text>
+                    </View>
+            ))}
+            <Text style={{fontSize: 20, paddingTop: '5%'}}>Instructions</Text>
+            
 
         </View>
 
@@ -36,18 +52,32 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     topContainer: {
-        width: '80%',
-        height: '10%',
-        marginTop: '20%',
+        width: '100%',
+        height: '37%',
         justifyContent: 'center',
-        marginLeft: "10%",
     },
     middleContainer: {
         width: '100%',
         height: '68%',
-        paddingLeft: '10%',
+        paddingLeft: '5%',
     },
     footContainer: {
         height: '30%',
     },
+    recipeImage: {
+        width: '100%',
+        height: '100%',
+    },
+    ingredientContainer: {
+        margin: '1%',
+        marginRight: '5%',
+        marginLeft: '5%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    ingredientName: {
+        fontSize: 15,
+          
+    }
+
 })
