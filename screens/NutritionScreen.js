@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React, {useContext, useCallback} from 'react'
 import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
-import getRecipies from'../apis/SpoonacularApi.js'
+import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
+import { NutritionScreenStyles } from '../styles/stylesheet';
 
 const NutritionScreen = () => {
     const navigation = useNavigation();
@@ -17,44 +18,44 @@ const NutritionScreen = () => {
         return product.category
     }, [])
 
+    console.log(recipes.recipeList)
     // useCallback hook to update the scanned products list and set scanned state to false
     const getRecipeList = useCallback(async () => {
         let recipiesResponse = await getRecipies(categoryList)
+        console.log(recipiesResponse)
         // update the product list context with the new product
-        recipes.updateRecipeList([...recipes.recipeList, recipiesResponse]);
-        // Navigate to the recipe page
+        await recipes.updateRecipeList(recipiesResponse)
+
         navigation.navigate('RecipesList')
+    
     },[recipes.recipeList])
 
     return (
-        <View style={styles.container}>
-            <View style={styles.topContainer}> 
+        <View style={NutritionScreenStyles.container}>
+            <View style={NutritionScreenStyles.topContainer}> 
                 <Text style={{fontSize: 30}}>Nutrition Page</Text>
             </View>
             {products.productList.length === 0 ? (
-                <View style={styles.middleContainer}>
+                <View style={NutritionScreenStyles.middleContainer}>
                     <Text style={{fontSize: 30}}>No list present</Text>
                 </View>
             ) : (
-                <View style={styles.middleContainer}>
+                <View style={NutritionScreenStyles.middleContainer}>
                     <ScrollView>
                         {products.productList.map((product, index) => (
-                            <View key={index} style={styles.productContainer}>
-                                <Text style={styles.productTitle}>
-                                    Item {index + 1}
+                            <View key={index} style={NutritionScreenStyles.productContainer}>
+                                <Text style={NutritionScreenStyles.productName}>
+                                    {product.product_name[0].toUpperCase() + product.product_name.slice(1)}
                                 </Text>
-                                <Text style={styles.productName}>
-                                    Product Name: {product.product_name}
-                                </Text>
-                                <Text style={styles.product}>
+                                <Text style={NutritionScreenStyles.product}>
                                     Brand Name: {product.brand_name}
                                 </Text>
-                                <View style={styles.ingredientsContainer}>
+                                <View style={NutritionScreenStyles.ingredientsContainer}>
                                     <Text>
-                                        Ingredients: {product.ingredients}
+                                        Ingredients: {`${product.ingredients}`}
                                     </Text>
                                 </View>
-                                <View style={styles.nutritionContainer}>
+                                <View style={NutritionScreenStyles.nutritionContainer}>
                                     <Text>
                                         Energy: {product.nutriments.energy_value} {product.nutriments.energy_unit}
                                         </Text>
@@ -88,11 +89,15 @@ const NutritionScreen = () => {
                     </ScrollView>
                 </View>
             )}
-                <View style={styles.footerContainer}>
-                    <Button title="Look at Recipes" style={styles.button} onPress={() => 
+                <View style={NutritionScreenStyles.footerContainer}>
+                    <View styles={NutritionScreenStyles.buttonContainer}></View>
+                    <TouchableOpacity title="Look at Recipes" style={NutritionScreenStyles.button} onPress={() => 
                         {
                             getRecipeList()
-                        }}/>
+                        }}>
+                            <Text style={NutritionScreenStyles.buttonText}>Look at Recipes</Text>
+                    </TouchableOpacity>
+                    
                     <NavigationBar />
                 </View>
             </View>
@@ -101,40 +106,3 @@ const NutritionScreen = () => {
 
 
 export default NutritionScreen
-
-const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-    },
-    topContainer: {
-        width: '80%',
-        height: '10%',
-        marginTop: '20%',
-        justifyContent: 'center',
-        marginLeft: "10%",
-    },
-    middleContainer: {
-        width: '100%',
-        height: '68%',
-        paddingLeft: '10%',
-    },
-    footContainer: {
-        height: '30%',
-    },
-    productTitle: {
-        fontSize: 20,
-    },
-    productName: {
-        paddingLeft: 10,
-    },
-    product: {
-        paddingLeft: 10,
-    },     
-    ingredientsContainer: {
-        paddingLeft: 10,
-    }, 
-    nutritionContainer: {
-        paddingLeft: 10,
-    },
-})
