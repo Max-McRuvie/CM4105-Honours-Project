@@ -4,7 +4,7 @@ import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
 import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
-import { NutritionScreenStyles } from '../styles/stylesheet';
+import { NutritionScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
 
 const NutritionScreen = () => {
     const navigation = useNavigation();
@@ -31,72 +31,73 @@ const NutritionScreen = () => {
     },[recipes.recipeList])
 
     return (
-        <View style={NutritionScreenStyles.container}>
-            <View style={NutritionScreenStyles.topContainer}> 
-                <Text style={{fontSize: 30}}>Nutrition Page</Text>
+        <View style={containerStyles.container}>
+            <View style={containerStyles.topContainer}> 
+                <Text style={TextStyles.title}>Nutrition Page</Text>
             </View>
             {products.productList.length === 0 ? (
-                <View style={NutritionScreenStyles.middleContainer}>
-                    <Text style={{fontSize: 30}}>No list present</Text>
+                <View style={containerStyles.listContainer}>
+                    <Text style={TextStyles.header}>No list present</Text>
                 </View>
             ) : (
-                <View style={NutritionScreenStyles.middleContainer}>
+                <View style={containerStyles.listContainer}>
                     <ScrollView>
                         {products.productList.map((product, index) => (
                             <View key={index} style={NutritionScreenStyles.productContainer}>
-                                <Text style={NutritionScreenStyles.productName}>
+                                <Text style={TextStyles.headerUnderline}>
                                     {product.product_name[0].toUpperCase() + product.product_name.slice(1)}
                                 </Text>
-                                <Text style={NutritionScreenStyles.product}>
+                                <Text style={TextStyles.listText}>
                                     Brand Name: {product.brand_name}
                                 </Text>
                                 <View style={NutritionScreenStyles.ingredientsContainer}>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Ingredients: {`${product.ingredients}`}
                                     </Text>
                                 </View>
                                 <View style={NutritionScreenStyles.nutritionContainer}>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Energy: {product.nutriments.energy_value} {product.nutriments.energy_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Fat: {product.nutriments.fat_value} {product.nutriments.fat_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Saturated Fat: {product.nutriments.saturated_fat_value} {product.nutriments.saturated_fat_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Carbohydrates: {product.nutriments.carbohydrates_value} {product.nutriments.carbohydrates_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Sugars: {product.nutriments.sugars_value} {product.nutriments.sugars_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Fiber: {product.nutriments.fiber_value} {product.nutriments.fiber_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Proteins: {product.nutriments.proteins_value} {product.nutriments.proteins_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Salt: {product.nutriments.salt_value} {product.nutriments.salt_unit}
                                         </Text>
-                                    <Text>
+                                    <Text style={TextStyles.listText}>
                                         Sodium: {product.nutriments.sodium_value} {product.nutriments.sodium_unit}
                                         </Text>
                                 </View>
                             </View>
                         ))}
+                        <View styles={NutritionScreenStyles.buttonContainer}>
+                            <TouchableOpacity title="Look at Recipes" style={NutritionScreenStyles.button} onPress={() => 
+                                {
+                                    getRecipeList()
+                                }}>
+                                    <Text style={NutritionScreenStyles.buttonText}>Look at Recipes</Text>
+                            </TouchableOpacity>
+                        </View>
                     </ScrollView>
                 </View>
             )}
-                <View style={NutritionScreenStyles.footerContainer}>
-                    <View styles={NutritionScreenStyles.buttonContainer}></View>
-                    <TouchableOpacity title="Look at Recipes" style={NutritionScreenStyles.button} onPress={() => 
-                        {
-                            getRecipeList()
-                        }}>
-                            <Text style={NutritionScreenStyles.buttonText}>Look at Recipes</Text>
-                    </TouchableOpacity>
+                <View style={containerStyles.footerContainer}>
                     
                     <NavigationBar />
                 </View>

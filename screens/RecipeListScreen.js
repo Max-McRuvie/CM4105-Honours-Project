@@ -4,7 +4,7 @@ import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { RecipeListScreenStyles } from '../styles/stylesheet';
+import { RecipeListScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
 
 import { getRecipeInstructions } from '../apis/SpoonacularApi.js'
 
@@ -28,29 +28,29 @@ const RecipeScreen = () => {
     }
 
     return (
-      <View style={RecipeListScreenStyles.container}>
-        <View style={RecipeListScreenStyles.topContainer}>
-          <Text style={{fontSize: 30}}>Recipes Page</Text>
+      <View style={containerStyles.container}>
+        <View style={containerStyles.topContainer}>
+          <Text style={TextStyles.title}>Recipes Page</Text>
         </View>
         {recipeContext.recipeList.length === 0 ? (
-            <View style={RecipeListScreenStyles.middleContainer}>
-                <Text style={{fontSize: 30, paddingLeft: '5%'}}>No items have been searched</Text>
+            <View style={containerStyles.listContainer}>
+                <Text style={TextStyles.header}>No items have been searched</Text>
             </View>
         ) : (
-            <View style={RecipeListScreenStyles.middleContainer}>
+            <View style={containerStyles.listContainer}>
                 <ScrollView>
                     {recipeContext.recipeList.map((recipe, index) => (
                         <View key={index} style={RecipeListScreenStyles.recipeListContainer}>
                             <TouchableOpacity onPress={() => {getInstructions(recipe)}} style={RecipeListScreenStyles.recipeContainer}>
                                 <Image source={{uri: recipe.image}} style={RecipeListScreenStyles.image} resizeMode='contain' />
-                                <View style={{width: '60%', paddingLeft: '2%'}}>
-                                    <Text style={RecipeListScreenStyles.recipeName}>
+                                <View style={RecipeListScreenStyles.textContainer}>
+                                    <Text style={TextStyles.subHeader}>
                                         {recipe.title}
                                     </Text>
-                                    <Text style={{fontSize: 15, paddingTop: '5%'}}>
+                                    <Text style={TextStyles.listText}>
                                         usedIngredientCount: {recipe.usedIngredientCount}
                                     </Text>
-                                    <Text style={{fontSize: 15}}>
+                                    <Text style={TextStyles.listText}>
                                         missedIngredientCount: {recipe.missedIngredientCount}
                                     </Text>
                                 </View>
@@ -61,7 +61,7 @@ const RecipeScreen = () => {
             </View>
         )}
 
-        <View style={RecipeListScreenStyles.footerContainer}>
+        <View style={containerStyles.footerContainer}>
                     <NavigationBar />
                 </View>
       </View>
