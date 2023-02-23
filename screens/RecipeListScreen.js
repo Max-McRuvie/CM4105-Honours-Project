@@ -4,6 +4,9 @@ import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RecipeListScreenStyles } from '../styles/stylesheet';
+
+import { getRecipeInstructions } from '../apis/SpoonacularApi.js'
 
 const RecipeScreen = () => {
     const navigation = useNavigation();
@@ -11,29 +14,37 @@ const RecipeScreen = () => {
 
     // Assign the recipe list context to a variable for easier access
     const recipeContext = context.recipeListState
-
-    
-
     console.log(recipeContext.recipeList)
+    console.log('jeff')
+
+    const getInstructions = async (recipe) => {
+        let instructions = await getRecipeInstructions(recipe.id)
+        // console.log(recipeResponse)
+        // update the product list context with the new product
+        navigation.navigate('Recipe', {
+            recipe: recipe,
+            instructions: instructions
+        })
+    }
 
     return (
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <Text style={{ fontSize: 30, paddingTop: 20}}>Recipes Page</Text>
+      <View style={RecipeListScreenStyles.container}>
+        <View style={RecipeListScreenStyles.topContainer}>
+          <Text style={{fontSize: 30}}>Recipes Page</Text>
         </View>
         {recipeContext.recipeList.length === 0 ? (
-            <View style={styles.middleContainer}>
+            <View style={RecipeListScreenStyles.middleContainer}>
                 <Text style={{fontSize: 30, paddingLeft: '5%'}}>No items have been searched</Text>
             </View>
         ) : (
-            <View style={styles.middleContainer}>
+            <View style={RecipeListScreenStyles.middleContainer}>
                 <ScrollView>
-                    {recipeContext.recipeList[0].map((recipe, index) => (
-                        <View key={index} style={styles.recipeListContainer}>
-                            <TouchableOpacity onPress={() => {navigation.navigate('Recipe', recipe)}} style={styles.recipeContainer}>
-                                <Image source={{uri: recipe.image}} style={styles.image} resizeMode='contain' />
+                    {recipeContext.recipeList.map((recipe, index) => (
+                        <View key={index} style={RecipeListScreenStyles.recipeListContainer}>
+                            <TouchableOpacity onPress={() => {getInstructions(recipe)}} style={RecipeListScreenStyles.recipeContainer}>
+                                <Image source={{uri: recipe.image}} style={RecipeListScreenStyles.image} resizeMode='contain' />
                                 <View style={{width: '60%', paddingLeft: '2%'}}>
-                                    <Text style={styles.recipeName}>
+                                    <Text style={RecipeListScreenStyles.recipeName}>
                                         {recipe.title}
                                     </Text>
                                     <Text style={{fontSize: 15, paddingTop: '5%'}}>
@@ -42,8 +53,6 @@ const RecipeScreen = () => {
                                     <Text style={{fontSize: 15}}>
                                         missedIngredientCount: {recipe.missedIngredientCount}
                                     </Text>
-
-                                    
                                 </View>
                             </TouchableOpacity>
                             </View>
@@ -52,7 +61,7 @@ const RecipeScreen = () => {
             </View>
         )}
 
-        <View style={styles.footerContainer}>
+        <View style={RecipeListScreenStyles.footerContainer}>
                     <NavigationBar />
                 </View>
       </View>
@@ -61,49 +70,3 @@ const RecipeScreen = () => {
 }
 
 export default RecipeScreen
-
-const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-    },
-    topContainer: {
-        width: '80%',
-        height: '10%',
-        justifyContent: 'center',
-        marginLeft: "10%",
-    },
-    middleContainer: {
-        width: '100%',
-        height: '84%',
-        paddingLeft: '5%',
-    },
-    footContainer: {
-        height: '10%',
-    },
-    recipeListContainer: {
-        width: '95%',
-        height: 120,
-        flexDirection: 'row',
-        alignContent: 'center',
-        marginTop: 10,
-        padding: 10,
-    },
-    recipeContainer: {
-        width: '100%',
-        height: '100%',
-        flexDirection: 'row',
-        alignContent: 'center',
-    },
-    recipeId: {
-        fontSize: 20,
-    },
-    recipeName: {
-        fontSize: 20,
-    },
-    image: {
-        width: 150,
-        height: 100,
-        borderRadius: 10,
-    }
-})
