@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppContextProvider } from './context/AppContext';
 import { auth } from './firebase/firebaseConfig';
+import { useFonts } from 'expo-font';
 
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -40,6 +41,13 @@ const createStackScreens = (screens, options) => screens.map(({ name, component 
 
 // Exported App function component
 export default function App() {
+  useFonts({
+    'Inter-Regular': 'https://rsms.me/inter/font-files/Inter-Regular.otf?v=3.12',
+    'Inter-SemiBold': 'https://rsms.me/inter/font-files/Inter-SemiBold.otf?v=3.12',
+    'Inter-Bold': 'https://rsms.me/inter/font-files/Inter-Bold.otf?v=3.12',
+    'Inter-ExtraBold': 'https://rsms.me/inter/font-files/Inter-ExtraBold.otf?v=3.12',
+  });
+
   // State to keep track of the user's authentication status
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null)
