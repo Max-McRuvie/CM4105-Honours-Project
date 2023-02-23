@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppContextProvider } from './context/AppContext';
-import { auth } from './firebase/firebaseConfig'
+import { auth } from './firebase/firebaseConfig';
 
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -13,7 +13,6 @@ import RecipeListScreen from './screens/RecipeListScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import BarcodeScanner from './screens/BarcodeScanner';
 import RecipeScreen from './screens/RecipeScreen';
-
 
 const Stack = createStackNavigator();
 
@@ -61,17 +60,18 @@ export default function App() {
 
 
   // FIXME: Users name is not displayed on initial load of home screen, but is displayed on subsequent loads
-  return user ? (
+
+   return user ? (
     <AppContextProvider>
       <NavigationContainer>
-        <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
-      </NavigationContainer>
-    </AppContextProvider>
-  ) : (
-    <NavigationContainer>
-      <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
-    </NavigationContainer>
-  )
+         <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
+       </NavigationContainer>
+     </AppContextProvider>
+   ) : (
+     <NavigationContainer>
+       <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
+     </NavigationContainer>
+   )
 }
 
 const styles = StyleSheet.create({
