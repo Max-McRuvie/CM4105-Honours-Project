@@ -1,20 +1,10 @@
-import { RecipeScreenStylesheet, Text, View, ScrollView, Button, Image } from 'react-native'
-import React, {useContext} from 'react'
+import { Text, View, ScrollView, Image } from 'react-native'
+import React from 'react'
 import NavigationBar from '../components/NavigationBar'
-import {AppContext} from '../context/AppContext';
-import { useNavigation } from '@react-navigation/native';
+
 import { RecipeScreenStyles, TextStyles, containerStyles } from '../styles/stylesheet';
 
-const RecipeIndivisualScreen = (prop) => {
-    const navigation = useNavigation();
-    const recipe = prop.route.params.recipe
-    const instructions = prop.route.params.instructions;
-
-    console.log('jeff')
-    // instructions.map((instruction) => console.log(instruction.steps))
-    //console.log(instructions[0].steps.map((instruction) => console.log(instruction)))
-    console.log(instructions)
-
+const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } }) => {
     return (
       <View style={containerStyles.container}>
         <View style={RecipeScreenStyles.imageContainer}>

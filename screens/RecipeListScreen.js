@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Button, Image } from 'react-native'
+import { Text, View, ScrollView, Image } from 'react-native'
 import React, {useContext} from 'react'
 import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
