@@ -276,15 +276,8 @@ export const NutritionScreenStyles = StyleSheet.create({
         borderRadius: 30,
         elevation: 5, 
     },     
-    ingredientsContainer: {
-        paddingLeft: 10,
-    },
-    ingredientsText: {
-        color: '#4375b1',
-        fontFamily: 'Inter-Bold',  
-    },
-    nutritionContainer: {
-        paddingLeft: 10,
+    contentContainer: {
+        padding: '2%',
     },
     button: {
         width: '30%',
@@ -345,6 +338,14 @@ export const RecipeScreenStyles = StyleSheet.create({
         marginLeft: '5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    bubbleContainer: {
+        padding: 10,
+        backgroundColor: '#e1eeff',
+        borderRadius: 10,
+        elevation: 5,
+        width: '95%',
+        marginTop: '5%',
     },
 });
 
