@@ -4,27 +4,90 @@ export const containerStyles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        paddingTop: '8%',
+        backgroundColor: '#1670e9',
     },
     topContainer: {
-        width: '80%',
+        width: '100%',
         height: '10%',
         justifyContent: 'center',
-        marginLeft: "10%",
-        borderBottomWidth: 1,
-        borderBottomColor: '#596407',
-
+        backgroundColor: '#1670e9',
+        paddingLeft: '5%',
     },
     middleContainer: {
         width: '80%',
         height: '83%',
         alignItems: 'center',
         paddingLeft: '10%',
+        paddingTop: '5%',
+    },
+    listContainer:{
+        width: '100%',
+        height: '84%',
+        paddingLeft: '5%',
+        paddingTop: '5%',
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
+        backgroundColor: '#fff',
+    },
+    recipeContentContainer: {
+        width: '100%',
+        height: '84%',
+        paddingLeft: '5%',
+        paddingTop: '5%',
+        backgroundColor: '#fff',
     },
     footContainer: {
         height: '10%',
     },
+
 });
+
+export const TextStyles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#fff',
+    },
+    recipeTitle: {
+        fontSize: 30,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#000',
+    },
+    header: {
+        fontSize: 20,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#000',
+    },
+    headerUnderline: {
+        fontSize: 20,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#000',
+        borderBottomWidth: 2,
+        borderBottomColor: '#4375b1',
+    },
+    subHeader: {
+        fontSize: 15,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#000',
+    },
+    text: {
+        fontSize: 15,
+        fontFamily: 'Inter-Bold',
+        color: '#000',
+    },
+    listHeader: {
+        fontSize: 20,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#000',
+        borderBottomWidth: 1,
+        borderBottomColor: '#000',
+    },
+    listText: {
+        fontSize: 15,
+        fontFamily: 'Inter-Bold',
+        color: '#4375b1',
+    },
+})
 
 export const LoginScreenStyles = StyleSheet.create({
     container: {
@@ -204,54 +267,22 @@ export const RegisterScreenStyles = StyleSheet.create({
 })
 
 export const NutritionScreenStyles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-        // backgroundColor: '#c8baad',
-        paddingTop: '5%',
-    },
-    topContainer: {
-        width: '80%',
-        height: '10%',
-        justifyContent: 'center',
-        marginLeft: "10%",
-        borderBottomWidth: 2,
-        borderBottomColor: '#596407',
-    },
-    middleContainer: {
-        width: '80%',
-        height: '75%',
-        alignItems: 'center',
-        paddingLeft: '10%',
-        paddingTop: '10%',
-    },
-    footContainer: {
-        height: '10%',
-        backgroundColor: 'red',
-    },
     productContainer: {
-        width: '100%',
+        width: '95%',
         height: 'auto',
-        marginBottom: 10,
-        borderWidth: 2,
-        borderColor: '#596407',
-        borderRadius: 10,
-        padding: 10,
-    },
-    productName: {
-        fontSize: 20,
-        marginBottom: 10,
-        fontWeight: 'bold',
-        fontFamily: 'monospace',
-        borderBottomWidth: 1,
-        borderBottomColor: '#596407',
-    },
-    product: {
-        paddingLeft: 10,
+        marginBottom: "5%",
+        padding: '5%',
+        backgroundColor: '#e1eeff',
+        borderRadius: 30,
+        elevation: 5, 
     },     
     ingredientsContainer: {
         paddingLeft: 10,
-    }, 
+    },
+    ingredientsText: {
+        color: '#4375b1',
+        fontFamily: 'Inter-Bold',  
+    },
     nutritionContainer: {
         paddingLeft: 10,
     },
@@ -270,27 +301,6 @@ export const NutritionScreenStyles = StyleSheet.create({
 })
 
 export const RecipeListScreenStyles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-        paddingTop: '5%',
-    },
-    topContainer: {
-        width: '80%',
-        height: '10%',
-        justifyContent: 'center',
-        marginLeft: "10%",
-        borderBottomWidth: 2,
-        borderBottomColor: '#596407',
-    },
-    middleContainer: {
-        width: '100%',
-        height: '83%',
-        paddingLeft: '5%',
-    },
-    footContainer: {
-        height: '10%',
-    },
     recipeListContainer: {
         width: '95%',
         height: 120,
@@ -298,6 +308,9 @@ export const RecipeListScreenStyles = StyleSheet.create({
         alignContent: 'center',
         marginTop: 10,
         padding: 10,
+        backgroundColor: '#e1eeff',
+        borderRadius: 10,
+        elevation: 5,
     },
     recipeContainer: {
         width: '100%',
@@ -305,11 +318,9 @@ export const RecipeListScreenStyles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
     },
-    recipeId: {
-        fontSize: 20,
-    },
-    recipeName: {
-        fontSize: 20,
+    textContainer: {
+        width: '60%', 
+        paddingLeft: '2%'
     },
     image: {
         width: 150,
@@ -319,37 +330,21 @@ export const RecipeListScreenStyles = StyleSheet.create({
 })
 
 export const RecipeScreenStyles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-    },
-    topContainer: {
-        width: '100%',
-        height: '37%',
-        justifyContent: 'center',
-    },
-    middleContainer: {
-        width: '100%',
-        height: '68%',
-        paddingLeft: '5%',
-    },
-    footContainer: {
+    imageContainer: {
         height: '30%',
+        width: '100%',
+        marginRight: '5%',
     },
     recipeImage: {
         width: '100%',
         height: '100%',
     },
-    ingredientContainer: {
+    contentContainer: {
         margin: '1%',
         marginRight: '5%',
         marginLeft: '5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    ingredientName: {
-        fontSize: 15,
-          
-    }
 });
 
