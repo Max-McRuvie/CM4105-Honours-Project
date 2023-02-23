@@ -31,7 +31,7 @@ export const containerStyles = StyleSheet.create({
     },
     recipeContentContainer: {
         width: '100%',
-        height: '84%',
+        height: '64%',
         paddingLeft: '5%',
         paddingTop: '5%',
         backgroundColor: '#fff',
@@ -345,7 +345,8 @@ export const RecipeScreenStyles = StyleSheet.create({
         borderRadius: 10,
         elevation: 5,
         width: '95%',
-        marginTop: '5%',
+        marginTop: '2%',
+        marginBottom: '2%',
     },
 });
 

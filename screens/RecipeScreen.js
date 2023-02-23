@@ -20,38 +20,40 @@ const RecipeIndivisualScreen = (prop) => {
         <View style={RecipeScreenStyles.imageContainer}>
         <Image source={{uri: recipe.image}} style={RecipeScreenStyles.recipeImage}/> 
         </View>
-        <View style={containerStyles.recipeContentContainer}>
-            <Text style={TextStyles.recipeTitle}>{recipe.title}</Text>
-            <View style={RecipeScreenStyles.bubbleContainer}>
-                <Text style={TextStyles.header}>Ingredients</Text>
-                {recipe.missedIngredients.map((ingredient, index) => (
-                        <View key={index} style={RecipeScreenStyles.contentContainer}>
-                            <Text style={TextStyles.text}>{ingredient.name}</Text> 
-                            <Text style={TextStyles.text}>{ingredient.amount} {ingredient.unit}</Text>
-                        </View>
-                ))}
-                {recipe.usedIngredients.map((ingredient, index) => (
-                        <View key={index} style={RecipeScreenStyles.contentContainer}>
-                            <Text style={TextStyles.text}>{ingredient.name}</Text> 
-                            <Text style={TextStyles.text}>{ingredient.amount} {ingredient.unit}</Text>
-                        </View>
-                ))}
-            </View>
-            <View style={RecipeScreenStyles.bubbleContainer}>
-                <Text style={TextStyles.header}>Instructions</Text>
-                {instructions[0].steps.map((instruction, index) => (
-                    <View key={index} style={RecipeScreenStyles.contentContainer}>
-                        <Text style={TextStyles.text}>{index + 1}</Text>
-                        <Text style={TextStyles.text}>{instruction.step}</Text>
+            <View style={containerStyles.recipeContentContainer}>
+            <ScrollView>
+                    <Text style={TextStyles.recipeTitle}>{recipe.title}</Text>
+                    <View style={RecipeScreenStyles.bubbleContainer}>
+                        <Text style={TextStyles.header}>Ingredients</Text>
+                        {recipe.missedIngredients.map((ingredient, index) => (
+                                <View key={index} style={RecipeScreenStyles.contentContainer}>
+                                    <Text style={TextStyles.text}>{ingredient.name}</Text> 
+                                    <Text style={TextStyles.text}>{ingredient.amount} {ingredient.unit}</Text>
+                                </View>
+                        ))}
+                        {recipe.usedIngredients.map((ingredient, index) => (
+                                <View key={index} style={RecipeScreenStyles.contentContainer}>
+                                    <Text style={TextStyles.text}>{ingredient.name}</Text> 
+                                    <Text style={TextStyles.text}>{ingredient.amount} {ingredient.unit}</Text>
+                                </View>
+                        ))}
                     </View>
-                )
-                )}
+                    <View style={RecipeScreenStyles.bubbleContainer}>
+                        <Text style={TextStyles.header}>Instructions</Text>
+                        {instructions[0].steps.map((instruction, index) => (
+                            <View key={index} style={RecipeScreenStyles.contentContainer}>
+                                <Text style={TextStyles.text}>{index + 1}</Text>
+                                <Text style={TextStyles.text}>{instruction.step}</Text>
+                            </View>
+                        )
+                        )}
+                    </View>
+                    </ScrollView>
             </View>
-        </View>
 
         <View style={containerStyles.footerContainer}>
-                    <NavigationBar />
-                </View>
+            <NavigationBar />
+        </View>
       </View>
       
     );
