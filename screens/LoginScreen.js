@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { loginInWithEmailAndPassword } from '../firebase/firebaseConfig'
+import { LoginScreenStyles } from '../styles/stylesheet';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('')
@@ -11,56 +12,56 @@ const LoginScreen = ({navigation}) => {
 
     return (
         <KeyboardAvoidingView
-            style={styles.container}
+            style={LoginScreenStyles.container}
             behavior= "height"       
         >
-            <View style={styles.topContainer}> 
+            <View style={LoginScreenStyles.topContainer}> 
                 <Text style={{fontSize: 30}}>Log-in</Text>
             </View>
 
-            <View style={styles.middleContainer}>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Email</Text>
+            <View style={LoginScreenStyles.middleContainer}>
+                <View style={LoginScreenStyles.inputContainer}>
+                    <Text style={LoginScreenStyles.inputHeader}>Email</Text>
                     <TextInput 
                         placeholder="Email"
                         value={email}
                         onChangeText={text => setEmail(text)}
-                        style={styles.input}
+                        style={LoginScreenStyles.input}
                     />
-                    <Text style={styles.inputHeader}>Password</Text>
+                    <Text style={LoginScreenStyles.inputHeader}>Password</Text>
                     <TextInput 
                         placeholder="Password"
                         value={password}
                         onChangeText={text => setPassword(text)}
-                        style={styles.input}
+                        style={LoginScreenStyles.input}
                         secureTextEntry
                     />
                 </View>
 
-                <View style={styles.forgotPasswordContainer}>
-                    <TouchableOpacity style={styles.forgotPassword}> 
-                        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+                <View style={LoginScreenStyles.forgotPasswordContainer}>
+                    <TouchableOpacity style={LoginScreenStyles.forgotPassword}> 
+                        <Text style={LoginScreenStyles.forgotPassword}>Forgot Password?</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.buttonContainer}>
+                <View style={LoginScreenStyles.buttonContainer}>
                     <TouchableOpacity
                         onPress={() => loginInWithEmailAndPassword(email, password)}
-                        style={styles.button}
+                        style={LoginScreenStyles.button}
                     >
-                        <Text style={styles.buttonText}>Login</Text>
+                        <Text style={LoginScreenStyles.buttonText}>Login</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Register')}
-                        style={[styles.button, styles.buttonOutline]}
+                        style={[LoginScreenStyles.button, LoginScreenStyles.buttonOutline]}
                     >
-                        <Text style={styles.buttonOutlineText}>Register</Text>
+                        <Text style={LoginScreenStyles.buttonOutlineText}>Register</Text>
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <View style={styles.footContainer}> 
+            <View style={LoginScreenStyles.footContainer}> 
             
             </View>
         </KeyboardAvoidingView>
@@ -68,93 +69,3 @@ const LoginScreen = ({navigation}) => {
 }
 
 export default LoginScreen
-
-const styles = StyleSheet.create({
-    // Screen Containers
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#D9D9D9',
-    },
-    topContainer: {
-        width: '100%',
-        height: '30%',
-        justifyContent: 'center',
-        marginLeft: "20%",
-    },
-    middleContainer: {
-        width: '100%',
-        height: '30%',
-        alignItems: 'center',
-    },
-    footContainer: {
-        height: '30%',
-    },
-    inputContainer: {
-        width: '80%'
-    },
-    // Inputs
-    inputHeader: {
-        marginBottom: 0,
-        paddingBottom: 0,
-        fontSize: 20,
-        marginTop: 50,
-    },
-    input: {
-        paddingHorizontal: 15,
-        paddingTop: 5,
-        paddingLeft: 0,
-        borderRadius: 0,
-        marginTop: 5,
-        borderBottomWidth: 4,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-        borderBottomColor:"#777676",
-        color: '#000000',
-        textAlign: 'left',
-        'input::placeholder': {
-            color: '#777676',
-        },
-    },
-    // Buttons
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: 40,
-    },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 5,
-        borderRadius: 10,
-        alignItems: 'center'
-    },
-    buttonOutline: {
-        backgroundColor: '#fff',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-    // Button Text
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    // Forgot Password
-    forgotPasswordContainer: {
-        width: '80%',
-        marginTop: 10
-    },
-    forgotPassword: {
-        textAlign: 'right'
-    },
-
-})

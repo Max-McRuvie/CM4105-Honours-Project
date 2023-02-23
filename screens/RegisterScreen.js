@@ -1,6 +1,7 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
 import { registerWithEmailAndPassword } from '../firebase/firebaseConfig'
+import { RegisterScreenStyles } from '../styles/stylesheet';
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
@@ -10,51 +11,51 @@ const RegisterScreen = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView
-            style={styles.container}
+            style={RegisterScreenStyles.container}
             behavior= "padding"       
         >
-            <View style={styles.topContainer}> 
+            <View style={RegisterScreenStyles.topContainer}> 
                 <Text style={{fontSize: 30}}>Register</Text>
             </View>
 
-            <View style={styles.middleContainer}>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputHeader}>Name</Text>
+            <View style={RegisterScreenStyles.middleContainer}>
+                <View style={RegisterScreenStyles.inputContainer}>
+                    <Text style={RegisterScreenStyles.inputHeader}>Name</Text>
                     <TextInput 
                         placeholder="Name"
                         value={name}
                         onChangeText={text => setName(text)}
-                        style={styles.input}
+                        style={RegisterScreenStyles.input}
                     />
-                    <Text style={styles.inputHeader}>Email</Text>
+                    <Text style={RegisterScreenStyles.inputHeader}>Email</Text>
                     <TextInput 
                         placeholder="Email"
                         value={email}
                         onChangeText={text => setEmail(text)}
-                        style={styles.input}
+                        style={RegisterScreenStyles.input}
                     />
-                    <Text style={styles.inputHeader}>Password</Text>
+                    <Text style={RegisterScreenStyles.inputHeader}>Password</Text>
                     <TextInput 
                         placeholder="Password"
                         value={password}
                         onChangeText={text => setPassword(text)}
-                        style={styles.input}
+                        style={RegisterScreenStyles.input}
                         secureTextEntry
                     />
                 </View>
 
-                <View style={styles.buttonContainer}>
+                <View style={RegisterScreenStyles.buttonContainer}>
                     
                     <TouchableOpacity
                         onPress={() => registerWithEmailAndPassword(name, email, password)}
-                        style={[styles.button, styles.buttonOutline]}
+                        style={[RegisterScreenStyles.button, RegisterScreenStyles.buttonOutline]}
                     >
-                        <Text style={styles.buttonOutlineText}>Register</Text>
+                        <Text style={RegisterScreenStyles.buttonOutlineText}>Register</Text>
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <View style={styles.footContainer}> 
+            <View style={RegisterScreenStyles.footContainer}> 
             
             </View>
         </KeyboardAvoidingView>
@@ -62,92 +63,3 @@ const RegisterScreen = ({ navigation }) => {
 }
 
 export default RegisterScreen
-
-const styles = StyleSheet.create({
-    // Screen Containers
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#D9D9D9',
-    },
-    topContainer: {
-        width: '100%',
-        height: '30%',
-        justifyContent: 'center',
-        marginLeft: "20%",
-    },
-    middleContainer: {
-        width: '100%',
-        height: '30%',
-        alignItems: 'center',
-    },
-    footContainer: {
-        height: '30%',
-    },
-    inputContainer: {
-        width: '80%'
-    },
-    // Inputs
-    inputHeader: {
-        marginBottom: 0,
-        paddingBottom: 0,
-        fontSize: 20,
-        marginTop: 50,
-    },
-    input: {
-        paddingHorizontal: 15,
-        paddingTop: 5,
-        paddingLeft: 0,
-        borderRadius: 0,
-        marginTop: 5,
-        borderBottomWidth: 4,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-        borderBottomColor:"#777676",
-        color: '#000000',
-        textAlign: 'left',
-        'input::placeholder': {
-            color: '#777676',
-        },
-    },
-    // Buttons
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: 40,
-    },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 5,
-        borderRadius: 10,
-        alignItems: 'center'
-    },
-    buttonOutline: {
-        backgroundColor: '#fff',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-    // Button Text
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    // Forgot Password
-    forgotPasswordContainer: {
-        width: '80%',
-        marginTop: 10
-    },
-    forgotPassword: {
-        textAlign: 'right'
-    },
-})
