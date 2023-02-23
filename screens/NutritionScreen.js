@@ -47,15 +47,13 @@ const NutritionScreen = () => {
                                 <Text style={TextStyles.headerUnderline}>
                                     {product.product_name[0].toUpperCase() + product.product_name.slice(1)}
                                 </Text>
-                                <Text style={TextStyles.listText}>
-                                    Brand Name: {product.brand_name}
-                                </Text>
-                                <View style={NutritionScreenStyles.ingredientsContainer}>
+                                <View style={NutritionScreenStyles.contentContainer}>
+                                    <Text style={TextStyles.listText}>
+                                        Brand Name: {product.brand_name}
+                                    </Text>
                                     <Text style={TextStyles.listText}>
                                         Ingredients: {`${product.ingredients}`}
                                     </Text>
-                                </View>
-                                <View style={NutritionScreenStyles.nutritionContainer}>
                                     <Text style={TextStyles.listText}>
                                         Energy: {product.nutriments.energy_value} {product.nutriments.energy_unit}
                                         </Text>
