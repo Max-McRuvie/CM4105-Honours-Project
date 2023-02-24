@@ -93,12 +93,42 @@ export const TextStyles = StyleSheet.create({
     },
 })
 
+export const buttonStyles = StyleSheet.create({
+    button: {
+        backgroundColor: '#0782F9',
+        width: '100%',
+        padding: 5,
+        borderRadius: 10,
+        alignItems: 'center',
+        elevation: 5,
+    },
+    buttonOutline: {
+        backgroundColor: '#fff',
+        marginTop: 5,
+        borderColor: '#0782F9',
+        borderWidth: 2,
+        elevation: 5,
+    },
+    // Button Text
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '700'
+    },
+    buttonOutlineText: {
+        color: '#0782F9',
+        fontSize: 16,
+        fontWeight: '700'
+    },
+})
+
+
 export const LoginScreenStyles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#2c7be1'
     },
     topContainer: {
         width: '100%',
@@ -115,14 +145,15 @@ export const LoginScreenStyles = StyleSheet.create({
         height: '30%',
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
+        marginTop: 50,
     },
     // Inputs
     inputHeader: {
-        marginBottom: 0,
-        paddingBottom: 0,
         fontSize: 20,
-        marginTop: 50,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#fff',
+        marginTop: '5%',
     },
     input: {
         paddingHorizontal: 15,
@@ -133,11 +164,12 @@ export const LoginScreenStyles = StyleSheet.create({
         borderBottomWidth: 4,
         borderBottomLeftRadius: 2,
         borderBottomRightRadius: 2,
-        borderBottomColor:"#777676",
-        color: '#000000',
+        borderBottomColor:"#fff",
+        color: '#fff',
+        fontFamily: 'Inter-ExtraBold',
         textAlign: 'left',
         'input::placeholder': {
-            color: '#777676',
+            color: '#000',
         },
     },
     // Buttons
@@ -147,37 +179,14 @@ export const LoginScreenStyles = StyleSheet.create({
         alignContent: 'center',
         marginTop: 40,
     },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 5,
-        borderRadius: 10,
-        alignItems: 'center'
-    },
-    buttonOutline: {
-        backgroundColor: '#fff',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-    // Button Text
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontSize: 16,
-        fontWeight: '700'
-    },
     // Forgot Password
     forgotPasswordContainer: {
         width: '80%',
         marginTop: 10
     },
     forgotPassword: {
-        textAlign: 'right'
+        textAlign: 'right',
+        color: '#fff',
     },
 })
 
@@ -187,7 +196,7 @@ export const RegisterScreenStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#2c7be1'
     },
     topContainer: {
         width: '100%',
@@ -210,8 +219,10 @@ export const RegisterScreenStyles = StyleSheet.create({
     inputHeader: {
         marginBottom: 0,
         paddingBottom: 0,
-        fontSize: 20,
         marginTop: 50,
+        fontSize: 20,
+        fontFamily: 'Inter-ExtraBold',
+        color: '#fff',
     },
     input: {
         paddingHorizontal: 15,
@@ -222,8 +233,9 @@ export const RegisterScreenStyles = StyleSheet.create({
         borderBottomWidth: 4,
         borderBottomLeftRadius: 2,
         borderBottomRightRadius: 2,
-        borderBottomColor:"#777676",
-        color: '#000000',
+        borderBottomColor:"#fff",
+        color: '#fff',
+        fontFamily: 'Inter-ExtraBold',
         textAlign: 'left',
         'input::placeholder': {
             color: '#777676',
@@ -235,30 +247,6 @@ export const RegisterScreenStyles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         marginTop: 40,
-    },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 5,
-        borderRadius: 10,
-        alignItems: 'center'
-    },
-    buttonOutline: {
-        backgroundColor: '#fff',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-    // Button Text
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontSize: 16,
-        fontWeight: '700'
     },
     // Forgot Password
     forgotPasswordContainer: {
