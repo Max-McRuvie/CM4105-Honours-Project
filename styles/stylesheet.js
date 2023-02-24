@@ -1,17 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 export const containerStyles = StyleSheet.create({
+    //#1670e7 Old
+    // #177cf9 New
+    // #2c7be1 Currently used
     container: {
         height: '100%',
         width: '100%',
-        backgroundColor: '#1670e9',
+        backgroundColor: '#2c7be1',
     },
     topContainer: {
         width: '100%',
         height: '10%',
         justifyContent: 'center',
-        backgroundColor: '#1670e9',
+        backgroundColor: '#2c7be1',
         paddingLeft: '5%',
+        paddingTop: '5%',
     },
     middleContainer: {
         width: '80%',
@@ -39,7 +43,7 @@ export const containerStyles = StyleSheet.create({
     footContainer: {
         height: '10%',
     },
-
+    
 });
 
 export const TextStyles = StyleSheet.create({
@@ -301,6 +305,7 @@ export const RecipeListScreenStyles = StyleSheet.create({
         alignContent: 'center',
         marginTop: 10,
         padding: 10,
+        // #ebf4fb Possivle new color
         backgroundColor: '#e1eeff',
         borderRadius: 10,
         elevation: 5,
