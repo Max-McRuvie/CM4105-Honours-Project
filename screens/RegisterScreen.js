@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
 import { registerWithEmailAndPassword } from '../firebase/firebaseConfig'
-import { RegisterScreenStyles } from '../styles/stylesheet';
+import { RegisterScreenStyles, TextStyles, buttonStyles } from '../styles/stylesheet';
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
@@ -15,7 +15,7 @@ const RegisterScreen = ({ navigation }) => {
             behavior= "padding"       
         >
             <View style={RegisterScreenStyles.topContainer}> 
-                <Text style={{fontSize: 30}}>Register</Text>
+                <Text style={TextStyles.title}>Register</Text>
             </View>
 
             <View style={RegisterScreenStyles.middleContainer}>
@@ -48,9 +48,9 @@ const RegisterScreen = ({ navigation }) => {
                     
                     <TouchableOpacity
                         onPress={() => registerWithEmailAndPassword(name, email, password)}
-                        style={[RegisterScreenStyles.button, RegisterScreenStyles.buttonOutline]}
+                        style={[buttonStyles.button, buttonStyles.buttonOutline]}
                     >
-                        <Text style={RegisterScreenStyles.buttonOutlineText}>Register</Text>
+                        <Text style={buttonStyles.buttonOutlineText}>Register</Text>
                     </TouchableOpacity>
                 </View>
             </View>

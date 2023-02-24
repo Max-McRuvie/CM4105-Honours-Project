@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { loginInWithEmailAndPassword } from '../firebase/firebaseConfig'
-import { LoginScreenStyles } from '../styles/stylesheet';
+import { LoginScreenStyles, TextStyles, containerStyles, buttonStyles } from '../styles/stylesheet';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('')
@@ -16,7 +16,7 @@ const LoginScreen = ({navigation}) => {
             behavior= "height"       
         >
             <View style={LoginScreenStyles.topContainer}> 
-                <Text style={{fontSize: 30}}>Log-in</Text>
+                <Text style={TextStyles.title}>Log-in</Text>
             </View>
 
             <View style={LoginScreenStyles.middleContainer}>
@@ -47,16 +47,16 @@ const LoginScreen = ({navigation}) => {
                 <View style={LoginScreenStyles.buttonContainer}>
                     <TouchableOpacity
                         onPress={() => loginInWithEmailAndPassword(email, password)}
-                        style={LoginScreenStyles.button}
+                        style={buttonStyles.button}
                     >
-                        <Text style={LoginScreenStyles.buttonText}>Login</Text>
+                        <Text style={buttonStyles.buttonText}>Login</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Register')}
-                        style={[LoginScreenStyles.button, LoginScreenStyles.buttonOutline]}
+                        style={[buttonStyles.button, buttonStyles.buttonOutline]}
                     >
-                        <Text style={LoginScreenStyles.buttonOutlineText}>Register</Text>
+                        <Text style={buttonStyles.buttonOutlineText}>Register</Text>
                     </TouchableOpacity>
                 </View>
             </View>
