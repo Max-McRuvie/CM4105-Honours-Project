@@ -4,9 +4,10 @@ import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
 import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
-import { NutritionScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
+import { NutritionScreenStyles, containerStyles, TextStyles, buttonStyles } from '../styles/stylesheet';
 
 const NutritionScreen = () => {
+    // Get the navigation object from the useNavigation hook
     const navigation = useNavigation();
     const context = useContext(AppContext)
 
@@ -14,21 +15,29 @@ const NutritionScreen = () => {
     const products = context.productListState
     const recipes = context.recipeListState
 
+    // Force update the component
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
+
     const categoryList = products.productList.map((product) => {
         return product.category
     }, [])
 
-    console.log(recipes.recipeList)
     // useCallback hook to update the scanned products list and set scanned state to false
     const getRecipeList = useCallback(async () => {
         let recipiesResponse = await getRecipies(categoryList)
-        console.log(recipiesResponse)
         // update the product list context with the new product
         await recipes.updateRecipeList(recipiesResponse)
 
         navigation.navigate('RecipesList')
-    
     },[recipes.recipeList])
+
+    // Function to remove an item from the product list
+    const removeItem = (index) => {
+        products.productList.splice(index, 1)
+        products.updateProductList(products.productList)
+        forceUpdate()
+    }
 
     return (
         <View style={containerStyles.container}>
@@ -41,7 +50,7 @@ const NutritionScreen = () => {
                 </View>
             ) : (
                 <View style={containerStyles.listContainer}>
-                    <ScrollView>
+                    <ScrollView style={{height:'100%', width: '80%'}}>
                         {products.productList.map((product, index) => (
                             <View key={index} style={NutritionScreenStyles.productContainer}>
                                 <Text style={TextStyles.headerUnderline}>
@@ -82,14 +91,26 @@ const NutritionScreen = () => {
                                         Sodium: {product.nutriments.sodium_value} {product.nutriments.sodium_unit}
                                         </Text>
                                 </View>
+                                <TouchableOpacity title="Look at Recipes" style={buttonStyles.removeButton} onPress={() => 
+                                    {
+                                        removeItem(index)
+                                    }}>
+                                    <Text style={buttonStyles.buttonOutlineText}>Remove Item</Text>
+                                </TouchableOpacity>
                             </View>
                         ))}
-                        <View styles={NutritionScreenStyles.buttonContainer}>
-                            <TouchableOpacity title="Look at Recipes" style={NutritionScreenStyles.button} onPress={() => 
+                        <View styles={containerStyles.buttonContainer}>
+                            <TouchableOpacity title="Look at Recipes" style={buttonStyles.button} onPress={() => 
                                 {
                                     getRecipeList()
                                 }}>
-                                    <Text style={NutritionScreenStyles.buttonText}>Look at Recipes</Text>
+                                <Text style={buttonStyles.buttonText}>Look at Recipes</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity title="Look at Recipes" style={buttonStyles.buttonOutline} onPress={() => 
+                                {
+                                    getRecipeList()
+                                }}>
+                                <Text style={buttonStyles.buttonOutlineText}>Remove Item</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>
