@@ -44,7 +44,7 @@ const LoginScreen = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={LoginScreenStyles.buttonContainer}>
+                <View style={containerStyles.buttonContainer}>
                     <TouchableOpacity
                         onPress={() => loginInWithEmailAndPassword(email, password)}
                         style={buttonStyles.button}

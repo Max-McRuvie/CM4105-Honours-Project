@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
 import { registerWithEmailAndPassword } from '../firebase/firebaseConfig'
-import { RegisterScreenStyles, TextStyles, buttonStyles } from '../styles/stylesheet';
+import { RegisterScreenStyles, TextStyles, buttonStyles, containerStyles } from '../styles/stylesheet';
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
@@ -44,7 +44,7 @@ const RegisterScreen = ({ navigation }) => {
                     />
                 </View>
 
-                <View style={RegisterScreenStyles.buttonContainer}>
+                <View style={containerStyles.buttonContainer}>
                     
                     <TouchableOpacity
                         onPress={() => registerWithEmailAndPassword(name, email, password)}

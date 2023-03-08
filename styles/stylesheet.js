@@ -27,7 +27,7 @@ export const containerStyles = StyleSheet.create({
     listContainer:{
         width: '100%',
         height: '84%',
-        paddingLeft: '5%',
+        alignItems: 'center',
         paddingTop: '5%',
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
@@ -43,7 +43,13 @@ export const containerStyles = StyleSheet.create({
     footContainer: {
         height: '10%',
     },
-    
+    buttonContainer: {
+        width: '60%',
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: '5%',
+        marginBottom: '5%',
+    },
 });
 
 export const TextStyles = StyleSheet.create({
@@ -105,7 +111,10 @@ export const buttonStyles = StyleSheet.create({
     buttonOutline: {
         backgroundColor: '#fff',
         marginTop: 5,
+        borderRadius: 10,
+        padding: 5,
         borderColor: '#0782F9',
+        alignItems: 'center',
         borderWidth: 2,
         elevation: 5,
     },
@@ -120,6 +129,17 @@ export const buttonStyles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
+    removeButton: {
+        width: '80%',
+        height: 30,
+        borderRadius: 15,
+        borderWidth: 2,
+        borderColor: '#ff0000',
+        backgroundColor: '#fff',
+        marginLeft: '10%',
+        alignItems: 'center',
+    }
+
 })
 
 
@@ -171,13 +191,6 @@ export const LoginScreenStyles = StyleSheet.create({
         'input::placeholder': {
             color: '#000',
         },
-    },
-    // Buttons
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: 40,
     },
     // Forgot Password
     forgotPasswordContainer: {
@@ -267,22 +280,11 @@ export const NutritionScreenStyles = StyleSheet.create({
         backgroundColor: '#e1eeff',
         borderRadius: 30,
         elevation: 5, 
+        flex: 1
     },     
     contentContainer: {
         padding: '2%',
     },
-    button: {
-        width: '30%',
-        height: 'auto',
-        backgroundColor: '#596407',
-        marginBottom: '5%',
-        marginLeft: '10%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonText: {
-        fontSize: 20,
-    }
 })
 
 export const RecipeListScreenStyles = StyleSheet.create({
@@ -293,7 +295,7 @@ export const RecipeListScreenStyles = StyleSheet.create({
         alignContent: 'center',
         marginTop: 10,
         padding: 10,
-        // #ebf4fb Possivle new color
+        // #ebf4fb Possible new color
         backgroundColor: '#e1eeff',
         borderRadius: 10,
         elevation: 5,
