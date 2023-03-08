@@ -106,12 +106,6 @@ const NutritionScreen = () => {
                                 }}>
                                 <Text style={buttonStyles.buttonText}>Look at Recipes</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity title="Look at Recipes" style={buttonStyles.buttonOutline} onPress={() => 
-                                {
-                                    getRecipeList()
-                                }}>
-                                <Text style={buttonStyles.buttonOutlineText}>Remove Item</Text>
-                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </View>
