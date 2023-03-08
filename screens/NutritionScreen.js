@@ -22,7 +22,7 @@ const NutritionScreen = () => {
         return product.category
     }, [])
 
-    // useCallback hook to update the scanned products list and set scanned state to false
+    // Function to get the recipe list
     const getRecipeList = async () => {
         let recipiesResponse = await getRecipies(categoryList)
         
