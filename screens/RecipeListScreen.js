@@ -17,7 +17,7 @@ const RecipeScreen = ({navigation}) => {
         let instructions = await getRecipeInstructions(recipe.id)
         // console.log(recipeResponse)
         // update the product list context with the new product
-        navigation.navigate('Recipe', {
+        navigation.navigate('RecipeScreen', {
             recipe: recipe,
             instructions: instructions
         })

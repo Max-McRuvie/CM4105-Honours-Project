@@ -52,9 +52,18 @@ const BarcodeScannerScreen = () => (
 
 const RecipesStack = createNativeStackNavigator();
 const RecipesStackScreen = () => (
-  <RecipesStack.Navigator screenOptions={ {headerShown:false} }>
-    <RecipesStack.Screen name="RecipesListScreen" component={RecipeListScreen}/>
-    <RecipesStack.Screen name="RecipeScreen" component={RecipeScreen}/>
+  <RecipesStack.Navigator>
+    <RecipesStack.Screen name="RecipesListScreen" component={RecipeListScreen} options={ {headerShown:false} }/>
+    <RecipesStack.Screen name="RecipeScreen" component={RecipeScreen} options={{
+          title: 'Recipe',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }}/>
   </RecipesStack.Navigator>
 );
 
