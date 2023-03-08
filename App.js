@@ -31,21 +31,21 @@ const createStackScreens = (screens, options) => screens.map(({ name, component 
 const HomeStack = createNativeStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator screenOptions={ {headerShown:false} }>
-    <HomeStack.Screen name="Home" component={HomeScreen}/>
+    <HomeStack.Screen name="HomeScreen" component={HomeScreen}/>
   </HomeStack.Navigator>
 );
 
 const NutritionStack = createNativeStackNavigator();
 const NutritionStackScreen = () => (
   <NutritionStack.Navigator screenOptions={ {headerShown:false} }>
-    <NutritionStack.Screen name="Nutrition" component={NutritionScreen}/>
+    <NutritionStack.Screen name="NutritionScreen" component={NutritionScreen}/>
   </NutritionStack.Navigator>
 );
 
 const BarcodeScannerStack = createNativeStackNavigator();
 const BarcodeScannerScreen = () => (
   <BarcodeScannerStack.Navigator screenOptions={ {headerShown:false} }>
-    <BarcodeScannerStack.Screen name="BarcodeScanner" component={BarcodeScanner}/>
+    <BarcodeScannerStack.Screen name="BarcodeScannerScreen" component={BarcodeScanner}/>
   </BarcodeScannerStack.Navigator>
 );
 
@@ -53,15 +53,15 @@ const BarcodeScannerScreen = () => (
 const RecipesStack = createNativeStackNavigator();
 const RecipesStackScreen = () => (
   <RecipesStack.Navigator screenOptions={ {headerShown:false} }>
-    <RecipesStack.Screen name="RecipesList" component={RecipeListScreen}/>
-    <RecipesStack.Screen name="Recipe" component={RecipeScreen}/>
+    <RecipesStack.Screen name="RecipesListScreen" component={RecipeListScreen}/>
+    <RecipesStack.Screen name="RecipeScreen" component={RecipeScreen}/>
   </RecipesStack.Navigator>
 );
 
 const ProfileStack = createNativeStackNavigator();
 const ProfileStackScreen = () => (
   <ProfileStack.Navigator screenOptions={ {headerShown:false} }>
-    <ProfileStack.Screen name="Profile" component={ProfileScreen}/>
+    <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen}/>
   </ProfileStack.Navigator>
 );
 
