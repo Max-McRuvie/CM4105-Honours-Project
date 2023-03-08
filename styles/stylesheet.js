@@ -19,14 +19,14 @@ export const containerStyles = StyleSheet.create({
     },
     middleContainer: {
         width: '80%',
-        height: '83%',
+        height: '100%',
         alignItems: 'center',
         paddingLeft: '10%',
         paddingTop: '5%',
     },
     listContainer:{
         width: '100%',
-        height: '84%',
+        height: '90%',
         alignItems: 'center',
         paddingTop: '5%',
         borderTopLeftRadius: 40,
@@ -35,13 +35,16 @@ export const containerStyles = StyleSheet.create({
     },
     recipeContentContainer: {
         width: '100%',
-        height: '64%',
+        height: '70%',
         paddingLeft: '5%',
         paddingTop: '5%',
         backgroundColor: '#fff',
     },
     footContainer: {
-        height: '10%',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        right: 0,
     },
     buttonContainer: {
         width: '60%',
@@ -344,4 +347,19 @@ export const RecipeScreenStyles = StyleSheet.create({
         marginBottom: '2%',
     },
 });
+
+export const ProfileScreenStyles = StyleSheet.create({
+    inputContainer: {
+        flexDirection: 'column',
+        marginTop: 10,
+        width: '100%',
+    },
+    input:{
+        backgroundColor: '#fff',
+        color: '#000',
+        paddingLeft: '2%',
+        borderRadius: 10,
+    }
+    
+})
 
