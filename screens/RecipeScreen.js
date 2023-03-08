@@ -1,6 +1,5 @@
 import { Text, View, ScrollView, Image } from 'react-native'
 import React from 'react'
-import NavigationBar from '../components/NavigationBar'
 
 import { RecipeScreenStyles, TextStyles, containerStyles } from '../styles/stylesheet';
 
@@ -42,7 +41,6 @@ const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } })
             </View>
 
         <View style={containerStyles.footerContainer}>
-            <NavigationBar />
         </View>
       </View>
       

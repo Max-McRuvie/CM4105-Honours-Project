@@ -1,6 +1,5 @@
-import { Text, View, ScrollView, Image } from 'react-native'
-import React, {useContext} from 'react'
-import NavigationBar from '../components/NavigationBar'
+import { Text, View, ScrollView, Image, Pressable } from 'react-native'
+import React, {useContext, useEffect} from 'react'
 import {AppContext} from '../context/AppContext';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -8,16 +7,13 @@ import { RecipeListScreenStyles, containerStyles, TextStyles } from '../styles/s
 
 import { getRecipeInstructions } from '../apis/SpoonacularApi.js'
 
-const RecipeScreen = () => {
-    const navigation = useNavigation();
+const RecipeScreen = ({navigation}) => {
     const context = useContext(AppContext)
 
     // Assign the recipe list context to a variable for easier access
     const recipeContext = context.recipeListState
-    console.log(recipeContext.recipeList)
-    console.log('jeff')
 
-    const getInstructions = async (recipe) => {
+    const getInstructions = async (navigation, recipe) => {
         let instructions = await getRecipeInstructions(recipe.id)
         // console.log(recipeResponse)
         // update the product list context with the new product
@@ -41,7 +37,7 @@ const RecipeScreen = () => {
                 <ScrollView>
                     {recipeContext.recipeList.map((recipe, index) => (
                         <View key={index} style={RecipeListScreenStyles.recipeListContainer}>
-                            <TouchableOpacity onPress={() => {getInstructions(recipe)}} style={RecipeListScreenStyles.recipeContainer}>
+                            <Pressable onPress={() => {getInstructions(navigation, recipe)}} style={RecipeListScreenStyles.recipeContainer}>
                                 <Image source={{uri: recipe.image}} style={RecipeListScreenStyles.image} resizeMode='contain' />
                                 <View style={RecipeListScreenStyles.textContainer}>
                                     <Text style={TextStyles.subHeader}>
@@ -54,7 +50,7 @@ const RecipeScreen = () => {
                                         missedIngredientCount: {recipe.missedIngredientCount}
                                     </Text>
                                 </View>
-                            </TouchableOpacity>
+                            </Pressable>
                             </View>
                     ))}
                 </ScrollView>
@@ -62,8 +58,8 @@ const RecipeScreen = () => {
         )}
 
         <View style={containerStyles.footerContainer}>
-                    <NavigationBar />
-                </View>
+         
+        </View>
       </View>
       
     );

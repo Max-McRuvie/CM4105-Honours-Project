@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React, {useContext, useCallback} from 'react'
-import NavigationBar from '../components/NavigationBar'
 import {AppContext} from '../context/AppContext';
 import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
@@ -29,7 +28,7 @@ const NutritionScreen = () => {
         // update the product list context with the new product
         await recipes.updateRecipeList(recipiesResponse)
 
-        navigation.navigate('RecipesList')
+        navigation.navigate('Recipes')
     },[recipes.recipeList])
 
     // Function to remove an item from the product list
@@ -110,10 +109,7 @@ const NutritionScreen = () => {
                     </ScrollView>
                 </View>
             )}
-                <View style={containerStyles.footerContainer}>
-                    
-                    <NavigationBar />
-                </View>
+                
             </View>
         )
     }

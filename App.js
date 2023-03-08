@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AppContextProvider } from './context/AppContext';
 import { auth } from './firebase/firebaseConfig';
 import { useFonts } from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -15,30 +17,62 @@ import ProfileScreen from './screens/ProfileScreen';
 import BarcodeScanner from './screens/BarcodeScanner';
 import RecipeScreen from './screens/RecipeScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 //Defining an object with default options for all stack screens
 const stackScreenOptions = { headerShown: false };
 
-// Creating an array of stack screens and mapping through it to create the screens
-const signedInScreens = [
-  { name: "Home", component: HomeScreen },
-  { name: "BarcodeScanner", component: BarcodeScanner },
-  { name: "Nutrition", component: NutritionScreen },
-  { name: "RecipesList", component: RecipeListScreen },
-  { name: "Recipe", component: RecipeScreen},
-  { name: "Profile", component: ProfileScreen },
-]
+// Creating a function to map through the screens array and return a stack screen for each
+const createStackScreens = (screens, options) => screens.map(({ name, component }) => (
+  <Stack.Screen key={name} name={name} component={component} options={options} />
+));
 
+// Signed in stacks for navigation
+const HomeStack = createNativeStackNavigator();
+const HomeStackScreen = () => (
+  <HomeStack.Navigator screenOptions={ {headerShown:false} }>
+    <HomeStack.Screen name="Home" component={HomeScreen}/>
+  </HomeStack.Navigator>
+);
+
+const NutritionStack = createNativeStackNavigator();
+const NutritionStackScreen = () => (
+  <NutritionStack.Navigator screenOptions={ {headerShown:false} }>
+    <NutritionStack.Screen name="Nutrition" component={NutritionScreen}/>
+  </NutritionStack.Navigator>
+);
+
+const BarcodeScannerStack = createNativeStackNavigator();
+const BarcodeScannerScreen = () => (
+  <BarcodeScannerStack.Navigator screenOptions={ {headerShown:false} }>
+    <BarcodeScannerStack.Screen name="BarcodeScanner" component={BarcodeScanner}/>
+  </BarcodeScannerStack.Navigator>
+);
+
+
+const RecipesStack = createNativeStackNavigator();
+const RecipesStackScreen = () => (
+  <RecipesStack.Navigator screenOptions={ {headerShown:false} }>
+    <RecipesStack.Screen name="RecipesList" component={RecipeListScreen}/>
+    <RecipesStack.Screen name="Recipe" component={RecipeScreen}/>
+  </RecipesStack.Navigator>
+);
+
+const ProfileStack = createNativeStackNavigator();
+const ProfileStackScreen = () => (
+  <ProfileStack.Navigator screenOptions={ {headerShown:false} }>
+    <ProfileStack.Screen name="Profile" component={ProfileScreen}/>
+  </ProfileStack.Navigator>
+);
+
+// Sign out screens
 const signedOutScreens = [
   { name: "Login", component: LoginScreen },
   { name: "Register", component: RegisterScreen },
 ]
 
-const createStackScreens = (screens, options) => screens.map(({ name, component }) => (
-  <Stack.Screen key={name} name={name} component={component} options={options} />
-));
-
+// Creating a tab navigator
+const Tab = createBottomTabNavigator();
 // Exported App function component
 export default function App() {
   useFonts({
@@ -57,8 +91,6 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  const screens = useMemo(() => (user ? signedInScreens : signedOutScreens), [user]);
-
   const onAuthStateChanged = (result) => {
     setUser(result)
     if (initializing) setInitializing(false);
@@ -72,12 +104,62 @@ export default function App() {
    return user ? (
     <AppContextProvider>
       <NavigationContainer>
-         <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
+         <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home-outline';
+              } else if(route.name === 'Nutrition') {
+                iconName = focused
+                  ? 'nutrition'
+                  : 'nutrition-outline';
+              } else if (route.name === 'Barcode Scanner') {
+                iconName = focused 
+                  ? 'camera' 
+                  : 'camera-outline';
+              }else if (route.name === 'Recipes') {
+                iconName = focused
+                  ? 'book'
+                  : 'book-outline';
+              } else if (route.name === 'Profile') {
+                iconName = focused
+                  ? 'person'
+                  : 'person-outline';
+              } 
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+            headerShown:false,
+          })}>
+            <Tab.Screen
+              name="Home" 
+              component={HomeStackScreen}/>
+            <Tab.Screen
+              name="Nutrition" 
+              component={NutritionStackScreen}/>
+              
+            <Tab.Screen
+              name="Barcode Scanner" 
+              component={BarcodeScannerScreen}/>
+             <Tab.Screen
+              name="Recipes" 
+              component={RecipesStackScreen}/>
+              <Tab.Screen
+              name="Profile" 
+              component={ProfileStackScreen}/>
+         </Tab.Navigator>
        </NavigationContainer>
      </AppContextProvider>
    ) : (
      <NavigationContainer>
-       <Stack.Navigator>{createStackScreens(screens, stackScreenOptions)}</Stack.Navigator>
+       <Stack.Navigator>
+          {createStackScreens(signedOutScreens, stackScreenOptions)}
+        </Stack.Navigator>
      </NavigationContainer>
    )
 }

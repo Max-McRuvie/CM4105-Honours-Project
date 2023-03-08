@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { auth } from '../firebase/firebaseConfig'
-import NavigationBar from '../components/NavigationBar'
 import { containerStyles, TextStyles } from '../styles/stylesheet'
 
 const HomeScreen = () => {
@@ -30,7 +29,7 @@ const HomeScreen = () => {
             </View>
 
             <View style={containerStyles.footerContainer}>
-                <NavigationBar />
+                
             </View>
         </View>
     )
