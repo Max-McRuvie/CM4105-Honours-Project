@@ -130,13 +130,14 @@ export const buttonStyles = StyleSheet.create({
         fontWeight: '700'
     },
     removeButton: {
-        width: '80%',
+        width: '50%',
         height: 30,
         borderRadius: 15,
         borderWidth: 2,
-        borderColor: '#ff0000',
+        borderColor: '#0782F9',
         backgroundColor: '#fff',
-        marginLeft: '10%',
+        marginLeft: '25%',
+        marginTop: '5%',
         alignItems: 'center',
     }
 
@@ -283,7 +284,6 @@ export const NutritionScreenStyles = StyleSheet.create({
         flex: 1
     },     
     contentContainer: {
-        padding: '2%',
     },
 })
 
