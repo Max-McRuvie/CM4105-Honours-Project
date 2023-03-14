@@ -1,8 +1,6 @@
 import { Text, View, ScrollView, Image, Pressable } from 'react-native'
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import {AppContext} from '../context/AppContext';
-import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { RecipeListScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
 
 import { getRecipeInstructions } from '../apis/SpoonacularApi.js'

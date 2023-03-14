@@ -5,9 +5,9 @@ import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
 import { NutritionScreenStyles, containerStyles, TextStyles, buttonStyles } from '../styles/stylesheet';
 
-const NutritionScreen = () => {
+const NutritionScreen = ({navigation}) => {
     // Get the navigation object from the useNavigation hook
-    const navigation = useNavigation();
+    
     const context = useContext(AppContext)
 
     // Assign the product list context to a variable for easier access
