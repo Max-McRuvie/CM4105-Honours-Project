@@ -4,6 +4,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import  getProductInformation  from '../apis/FoodFactsApi.js';
 import { useNavigation } from '@react-navigation/native';
 import {AppContext} from '../context/AppContext';
+import { addScannedItem } from '../firebase/firebaseConfig'
 
 // This component allows the user to scan barcodes and adds the product information to the product list
 const BarcodeScanner = () => {
@@ -46,6 +47,9 @@ const BarcodeScanner = () => {
   const addProductToList = useCallback((product) => {
     // update the product list context with the new product
     products.updateProductList([...products.productList, product]);
+
+    //add to firestore
+    addScannedItem(product)
     // reset the scanned state
     setScanned(false)
   },[products.productList])
