@@ -1,5 +1,5 @@
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
-import React, {useContext, useCallback} from 'react'
+import React, {useContext} from 'react'
 import {AppContext} from '../context/AppContext';
 import {getRecipies} from'../apis/SpoonacularApi.js'
 import { useNavigation } from '@react-navigation/native';
