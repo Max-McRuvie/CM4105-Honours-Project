@@ -8,10 +8,11 @@ export const containerStyles = StyleSheet.create({
         height: '100%',
         width: '100%',
         backgroundColor: '#2c7be1',
+        alignItems: 'center',
     },
     topContainer: {
         width: '100%',
-        height: '10%',
+        height: '15%',
         justifyContent: 'center',
         backgroundColor: '#2c7be1',
         paddingLeft: '5%',
@@ -19,14 +20,13 @@ export const containerStyles = StyleSheet.create({
     },
     middleContainer: {
         width: '80%',
-        height: '100%',
+        height: '80%',
         alignItems: 'center',
-        paddingLeft: '10%',
-        paddingTop: '5%',
+
     },
     listContainer:{
         width: '100%',
-        height: '90%',
+        height: '85%',
         alignItems: 'center',
         paddingTop: '5%',
         borderTopLeftRadius: 40,
@@ -62,7 +62,7 @@ export const TextStyles = StyleSheet.create({
         color: '#fff',
     },
     recipeTitle: {
-        fontSize: 30,
+        fontSize: 22,
         fontFamily: 'Inter-ExtraBold',
         color: '#000',
     },
@@ -322,9 +322,8 @@ export const RecipeListScreenStyles = StyleSheet.create({
 
 export const RecipeScreenStyles = StyleSheet.create({
     imageContainer: {
-        height: '30%',
+        height: '40%',
         width: '100%',
-        marginRight: '5%',
     },
     recipeImage: {
         width: '100%',
@@ -346,6 +345,9 @@ export const RecipeScreenStyles = StyleSheet.create({
         marginTop: '2%',
         marginBottom: '2%',
     },
+    button: {
+        width: '10%',
+    }
 });
 
 export const ProfileScreenStyles = StyleSheet.create({
@@ -359,7 +361,17 @@ export const ProfileScreenStyles = StyleSheet.create({
         color: '#000',
         paddingLeft: '2%',
         borderRadius: 10,
-    }
+        elevation: 5,
+        width: '95%',
+        height: 40,
+        marginBottom: 10,
+    },
+    buttonContainer: {
+        width: '60%',
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: 40,
+    },
     
 })
 
