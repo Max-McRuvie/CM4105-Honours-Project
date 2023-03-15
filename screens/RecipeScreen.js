@@ -1,9 +1,12 @@
-import { Text, View, ScrollView, Image } from 'react-native'
-import React from 'react'
+import { Text, View, ScrollView, Image, Pressable } from 'react-native'
+import React, {useState} from 'react'
+import { Ionicons } from '@expo/vector-icons';
 
 import { RecipeScreenStyles, TextStyles, containerStyles } from '../styles/stylesheet';
 
 const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } }) => {
+    const [isFavourite, updateIsFavourite] = useState(false);
+
     return (
       <View style={containerStyles.container}>
         <View style={RecipeScreenStyles.imageContainer}>
@@ -11,7 +14,20 @@ const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } })
         </View>
             <View style={containerStyles.recipeContentContainer}>
             <ScrollView>
-                    <Text style={TextStyles.recipeTitle}>{recipe.title}</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={[TextStyles.recipeTitle, {width: '80%', marginBottom: '2%'}]}>{recipe.title}</Text>
+
+                        <Pressable style={RecipeScreenStyles.button}>
+                            <Ionicons
+                                style={{padding: '15%'}}
+                                name= {isFavourite ? "heart" : "heart-outline"}
+                                color="red"
+                                onPress={() => { updateIsFavourite(!isFavourite)}}
+                                size={30}
+                            />
+                        </Pressable>
+                        
+                    </View>
                     <View style={RecipeScreenStyles.bubbleContainer}>
                         <Text style={TextStyles.header}>Ingredients</Text>
                         {recipe.missedIngredients.map((ingredient, index) => (
@@ -31,7 +47,7 @@ const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } })
                         <Text style={TextStyles.header}>Instructions</Text>
                         {instructions[0].steps.map((instruction, index) => (
                             <View key={index} style={RecipeScreenStyles.contentContainer}>
-                                <Text style={TextStyles.text}>{index + 1}</Text>
+                                <Text style={TextStyles.text}>{index + 1} - </Text>
                                 <Text style={TextStyles.text}>{instruction.step}</Text>
                             </View>
                         )
