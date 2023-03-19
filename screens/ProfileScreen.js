@@ -2,8 +2,8 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native'
 import React from 'react'
 import { auth, 
   updateUserProfile, 
-  credentialCheck
 } from '../firebase/firebaseConfig'
+
 import { containerStyles, TextStyles, buttonStyles, LoginScreenStyles, ProfileScreenStyles } from '../styles/stylesheet'
 
 
