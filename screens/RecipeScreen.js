@@ -1,11 +1,8 @@
 import { Text, View, ScrollView, Image, Pressable } from 'react-native'
 import React, {useState} from 'react'
-import { Ionicons } from '@expo/vector-icons';
 
 import { RecipeScreenStyles, TextStyles, containerStyles } from '../styles/stylesheet';
-
 const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } }) => {
-    const [isFavourite, updateIsFavourite] = useState(false);
 
     return (
       <View style={containerStyles.container}>
@@ -16,16 +13,6 @@ const RecipeIndivisualScreen = ({ route: { params: { recipe, instructions } } })
             <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={[TextStyles.recipeTitle, {width: '80%', marginBottom: '2%'}]}>{recipe.title}</Text>
-
-                        <Pressable style={RecipeScreenStyles.button}>
-                            <Ionicons
-                                style={{padding: '15%'}}
-                                name= {isFavourite ? "heart" : "heart-outline"}
-                                color="red"
-                                onPress={() => { updateIsFavourite(!isFavourite)}}
-                                size={30}
-                            />
-                        </Pressable>
                         
                     </View>
                     <View style={RecipeScreenStyles.bubbleContainer}>
