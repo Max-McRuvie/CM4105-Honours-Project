@@ -2,8 +2,9 @@ import { Text, View, ScrollView, Image, Pressable } from 'react-native'
 import React, {useContext} from 'react'
 import {AppContext} from '../context/AppContext';
 import { RecipeListScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
+import { isFavouriteCheck } from '../firebase/firebaseConfig'
 
-import { getRecipeInformation } from '../apis/SpoonacularApi.js'
+import { getRecipeInformation,  } from '../apis/SpoonacularApi.js'
 
 const RecipeScreen = ({navigation}) => {
     const context = useContext(AppContext)
@@ -11,15 +12,14 @@ const RecipeScreen = ({navigation}) => {
     // Assign the recipe list context to a variable for easier access
     const recipeContext = context.recipeListState
     // console.log(context.recipeListState.recipeList)
-    
 
     const getInformation = async (recipe) => {
         let recipeInformation = await getRecipeInformation(recipe.id)
-        // console.log(recipeResponse)
-        // update the product list context with the new product
-        
+        let isFav = await isFavouriteCheck(recipe.id)
+
         navigation.navigate('RecipeScreen', {
             recipe: recipeInformation,
+            isFav: isFav
         })
     }
 
