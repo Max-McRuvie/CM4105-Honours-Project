@@ -12,10 +12,10 @@ const RecipeIndivisualScreen = ({ route: { params: { recipe, isFav } } }) => {
         // await addFavoriteRecipe(recipe)
         if(!isFavourite) {
             updateIsFavourite(true)
-            addFavoriteRecipe(recipe.id)
+            addFavoriteRecipe(recipe.id, recipe.image, recipe.title)
         } else {
             updateIsFavourite(false)
-            removeFavoriteRecipe(recipe.id)
+            removeFavoriteRecipe(recipe.id, recipe.image, recipe.title)
         }
     }
 

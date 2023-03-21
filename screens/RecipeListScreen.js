@@ -15,7 +15,9 @@ const RecipeScreen = ({navigation}) => {
 
     const getInformation = async (recipe) => {
         let recipeInformation = await getRecipeInformation(recipe.id)
-        let isFav = await isFavouriteCheck(recipe.id)
+        // Is Fav works with the recipe id, image and title from recipeInformation API, as it is different
+        // to the recipe id, image and title from the API used on the NutritionScreen
+        let isFav = await isFavouriteCheck(recipeInformation.id, recipeInformation.image, recipeInformation.title)
 
         navigation.navigate('RecipeScreen', {
             recipe: recipeInformation,
@@ -29,9 +31,6 @@ const RecipeScreen = ({navigation}) => {
     } else if (recipeContext.recipeList.results.length < 1){
         error ='No recipes found'
     }
-    
-    
-
 
     return (
       <View style={containerStyles.container}>
