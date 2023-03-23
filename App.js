@@ -16,6 +16,7 @@ import RecipeListScreen from './screens/RecipeListScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import BarcodeScanner from './screens/BarcodeScanner';
 import RecipeScreen from './screens/RecipeScreen';
+import FavouriteScreen from './screens/FavouriteScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,8 +31,28 @@ const createStackScreens = (screens, options) => screens.map(({ name, component 
 // Signed in stacks for navigation
 const HomeStack = createNativeStackNavigator();
 const HomeStackScreen = () => (
-  <HomeStack.Navigator screenOptions={ {headerShown:false} }>
-    <HomeStack.Screen name="HomeScreen" component={HomeScreen}/>
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={ {headerShown:false} }/>
+    <HomeStack.Screen name="FavouriteScreen" component={FavouriteScreen} options={{
+          title: 'Favourites',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }}/>
+        <HomeStack.Screen name="RecipeScreen" component={RecipeScreen} options={{
+          title: 'Recipe',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }}/>
   </HomeStack.Navigator>
 );
 

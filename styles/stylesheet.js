@@ -35,7 +35,7 @@ export const containerStyles = StyleSheet.create({
     },
     recipeContentContainer: {
         width: '100%',
-        height: '70%',
+        height: '60%',
         paddingLeft: '5%',
         paddingTop: '5%',
         backgroundColor: '#fff',
@@ -345,9 +345,6 @@ export const RecipeScreenStyles = StyleSheet.create({
         marginTop: '2%',
         marginBottom: '2%',
     },
-    button: {
-        width: '10%',
-    }
 });
 
 export const ProfileScreenStyles = StyleSheet.create({
