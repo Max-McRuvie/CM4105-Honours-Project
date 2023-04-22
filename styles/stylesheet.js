@@ -96,9 +96,9 @@ export const TextStyles = StyleSheet.create({
         borderBottomColor: '#000',
     },
     listText: {
-        fontSize: 15,
+        fontSize: 18,
         fontFamily: 'Inter-Bold',
-        color: '#4375b1',
+        color: '#000',
     },
 })
 

@@ -2,7 +2,7 @@ import { Text, View, ScrollView, Image, Pressable } from 'react-native'
 import React, {useContext} from 'react'
 import {AppContext} from '../context/AppContext';
 import { RecipeListScreenStyles, containerStyles, TextStyles } from '../styles/stylesheet';
-import { isFavouriteCheck } from '../firebase/firebaseConfig'
+import { isFavouriteCheck } from '../firebase/firebaseApi.js'
 
 import { getRecipeInformation,  } from '../apis/SpoonacularApi.js'
 

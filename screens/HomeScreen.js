@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
 import React, {useState, useEffect, useContext, useMemo} from 'react'
-import { auth } from '../firebase/firebaseConfig'
+import { auth } from '../firebase/firebaseConfig.js'
 import { containerStyles, TextStyles, RecipeScreenStyles } from '../styles/stylesheet'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { getFavourites } from '../firebase/firebaseConfig'
+import { getFavourites } from '../firebase/firebaseApi.js'
   
 const HomeScreen = ({navigation}) => {
     const [name, setName] = useState('')
@@ -62,6 +62,9 @@ const HomeScreen = ({navigation}) => {
                             </Text>
                         </Pressable>
                     </View>
+                    <Text style={[TextStyles.text, {color: '#000'}]}>
+                    Welcome to your recipe collection! Click on the button above to access all of your favorite recipes in one convenient place. Whether you're a seasoned cook or just getting started, this is the perfect tool to help you keep track of all the dishes you love. From mouth-watering desserts to savory main courses, your favorite recipes are just a click away. So go ahead and explore your culinary creativity – your recipe collection is waiting!
+                    </Text>
                     
                 </View>
 

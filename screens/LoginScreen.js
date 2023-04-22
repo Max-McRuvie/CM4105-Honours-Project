@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
-import { loginInWithEmailAndPassword } from '../firebase/firebaseConfig'
+import { loginInWithEmailAndPassword } from '../firebase/firebaseApi.js'
 import { LoginScreenStyles, TextStyles, containerStyles, buttonStyles } from '../styles/stylesheet';
 
 const LoginScreen = ({navigation}) => {

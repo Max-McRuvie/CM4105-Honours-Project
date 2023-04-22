@@ -1,7 +1,7 @@
 import { Text, View, ScrollView, Image, Pressable } from 'react-native'
 import React, {useState} from 'react'
 import { Ionicons } from '@expo/vector-icons';
-import {addFavoriteRecipe, removeFavoriteRecipe} from '../firebase/firebaseConfig'
+import {addFavoriteRecipe, removeFavoriteRecipe} from '../firebase/firebaseApi.js'
 
 import { RecipeScreenStyles, TextStyles, containerStyles } from '../styles/stylesheet';
 const RecipeIndivisualScreen = ({ route: { params: { recipe, isFav } } }) => {

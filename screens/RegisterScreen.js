@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, TouchableOpacity, StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useState } from 'react'
-import { registerWithEmailAndPassword } from '../firebase/firebaseConfig'
+import { registerWithEmailAndPassword } from '../firebase/firebaseApi.js'
 import { RegisterScreenStyles, TextStyles, buttonStyles, containerStyles } from '../styles/stylesheet';
 
 const RegisterScreen = ({ navigation }) => {
